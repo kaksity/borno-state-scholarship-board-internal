@@ -3,7 +3,7 @@
 @section('authentication-component')
 <center>
     <img src="assets/images/auth/auth-logo.png" alt="" class="img-fluid mb-4 d-block d-xl-none d-lg-none" width="120">
-    <h4 class="mb-3 f-w-400">Sign up</h4>
+    <h4 class="mb-3 f-w-400">Create an Account</h4>
 </center>
 @if (session()->has('status'))
 <div class="alert alert-danger alert-dismissible" role="alert">
