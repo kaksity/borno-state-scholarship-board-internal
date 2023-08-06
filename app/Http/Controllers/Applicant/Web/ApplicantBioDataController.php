@@ -9,6 +9,7 @@ use App\Services\Interfaces\ApplicantSchoolDataServiceInterface;
 use App\Services\Interfaces\ApplicantServiceInterface;
 use App\Services\Interfaces\CountryServiceInterface;
 use App\Services\Interfaces\LgaServiceInterface;
+use App\Services\Interfaces\SchoolServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +21,7 @@ class ApplicantBioDataController extends Controller
         private ApplicantServiceInterface $applicantServiceInterface,
         private ApplicantBioDataServiceInterface $applicantBioDataServiceInterface,
         private ApplicantSchoolDataServiceInterface $applicantSchoolDataServiceInterface,
+        private SchoolServiceInterface $schoolServiceInterface,
     )
     {
     }
@@ -34,6 +36,11 @@ class ApplicantBioDataController extends Controller
 
         $countries = $this->countryServiceInterface->getCountries();
 
+        $schools = $this->schoolServiceInterface->getSchoolsFiltered([
+
+        ]);
+
+
         $applicant = $this->applicantServiceInterface->getApplicantByEmailAddress(
             auth('applicant')->user()->email,
             [
@@ -45,7 +52,8 @@ class ApplicantBioDataController extends Controller
         $data = [
             'lgas' => $lgas,
             'countries' => $countries,
-            'applicant' => $applicant
+            'applicant' => $applicant,
+            'schools' => $schools
         ];
 
         return view('web.applicant.bio-data')->with($data);

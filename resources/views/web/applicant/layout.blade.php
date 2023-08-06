@@ -42,15 +42,25 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="row card-header">
-                            <div class="col-6">
-                                <h5>Scholarship Application</h5>
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <h3>Scholarship Application</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <h5>Status: {{ auth('applicant')->user()->status }}</h5>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col text-right">
                                 <h5>
-                                    
+
                                     <form action="{{ route('process-logout') }}" method="POST">
                                         @csrf
-                                        <li class="nav-link"><a href="{{ route('show-change-password-form') }}">Change Password</a></li>
+                                        <li class="nav-link"><a href="{{ route('show-change-password-form') }}">Change
+                                                Password</a></li>
                                         <button type="submit" class="btn btn-sm"><i class="fas fa-sign-out-alt"></i>
                                             Logout</button>
                                     </form>
@@ -69,6 +79,7 @@
     </section>
     <!-- Required Js -->
     @include('web.applicant.partials._scripts')
+    @yield('custom_scripts')
 </body>
 
 </html>

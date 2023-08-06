@@ -17,6 +17,7 @@
             <form action="{{ route('process-applicant-submit-form') }}" method="POST">
                 @method('PUT')
                 @csrf
+                <h4>Personal Information</h4>
                 <div class="form-group row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label for="name" class="form-label"><b>Surname</b></label>
@@ -90,12 +91,12 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label class="col-form-label"><b>Country of Studies</b></label>
                         <div>
-                            {{ $applicant->applicantSchoolData->country->name }}
+                            {{ $applicant->applicantSchoolData->country->name ?? ''}}
                         </div>
                     </div>
                 </div>
                 @endif
-
+                <h4>Qualifications Obtained</h4>
                 <div class="table-responsive">
                     <table id="basic-btn" class="table mb-0">
                         <thead class="thead-light">
@@ -118,7 +119,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h3>Uploaded Documents</h3>
+                <h4>Uploaded Documents</h4>
                 <div class="table-responsive">
                     <table id="basic-btn" class="table mb-0">
                         <thead class="thead-light">
@@ -141,9 +142,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div>
-                    @if ($applicant->status === 'Submitted')
-                        <button type="submit" class="btn btn-primary" disabled>Application already been submitted</button>
+                <div class="mt-2">
+                    @if ($applicant->status === 'Applying')
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    @else
+                        <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
                     @endif
                 </div>
             </form>

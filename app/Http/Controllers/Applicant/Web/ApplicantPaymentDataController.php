@@ -49,19 +49,18 @@ class ApplicantPaymentDataController extends Controller
 
         DB::transaction(function () use ($loggedInApplicant) {
             
-            $applicationFee = env('DEFAULT_APPLICANT_PAYMENT_AMOUNT');
+            // $applicationFee = env('DEFAULT_APPLICANT_PAYMENT_AMOUNT');
 
-            $remitaPaymentOptions = [
-                'surname' => $loggedInApplicant->surname,
-                'other_names' => $loggedInApplicant->other_names,
-                'email_address' => $loggedInApplicant->email,
-                'description' => 'Payment for Scholarship Application Fees',
-                'amount' => $applicationFee,
-                'service_type_id' => env('REMITA_SERVICE_TYPE_ID'),
-            ];
+            // $remitaPaymentOptions = [
+            //     'surname' => $loggedInApplicant->surname,
+            //     'other_names' => $loggedInApplicant->other_names,
+            //     'email_address' => $loggedInApplicant->email,
+            //     'description' => 'Payment for Scholarship Application Fees',
+            //     'amount' => $applicationFee,
+            //     'service_type_id' => env('REMITA_SERVICE_TYPE_ID'),
+            // ];
             
-            $response = $this->remitaServiceInterface->initiatePayment($remitaPaymentOptions);
-            dd($response);
+            // $response = $this->remitaServiceInterface->initiatePayment($remitaPaymentOptions);
             // $applicantPayment = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataFiltered([
             //     'applicant_id' => $loggedInApplicant->id,
             //     'status' => 'paid'

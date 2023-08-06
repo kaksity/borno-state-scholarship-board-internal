@@ -13,6 +13,7 @@ use App\Services\Implementations\DocumentTypeServiceImplementation;
 use App\Services\Implementations\LgaServiceImplementation;
 use App\Services\Implementations\QualificationTypeServiceImplementation;
 use App\Services\Implementations\RemitaServiceImplementation;
+use App\Services\Implementations\SchoolServiceImplementation;
 use App\Services\Interfaces\ApplicantBioDataServiceInterface;
 use App\Services\Interfaces\ApplicantPaymentDataServiceInterface;
 use App\Services\Interfaces\ApplicantQualificationDataServiceInterface;
@@ -24,6 +25,7 @@ use App\Services\Interfaces\DocumentTypeServiceInterface;
 use App\Services\Interfaces\LgaServiceInterface;
 use App\Services\Interfaces\QualificationTypeServiceInterface;
 use App\Services\Interfaces\RemitaServiceInterface;
+use App\Services\Interfaces\SchoolServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class ServicesServiceProvider extends ServiceProvider
@@ -79,6 +81,11 @@ class ServicesServiceProvider extends ServiceProvider
         $this->app->bind(
             RemitaServiceInterface::class,
             RemitaServiceImplementation::class
+        );
+
+        $this->app->bind(
+            SchoolServiceInterface::class,
+            SchoolServiceImplementation::class
         );
     }
 

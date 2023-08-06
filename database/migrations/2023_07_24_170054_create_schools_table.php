@@ -15,11 +15,9 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('school')->nullable();
-            $table->string('country')->nullable();
-            $table->string('list')->nullable();
-            $table->string('data')->nullable();
-            $table->string('status')->nullable()->default('Active');
+            $table->string('country_id')->nullable();
+            $table->string('school_name')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

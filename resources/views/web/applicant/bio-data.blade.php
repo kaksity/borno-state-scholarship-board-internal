@@ -113,6 +113,31 @@
                         </div>
                     </div>
                 </div>
+                @if(auth('applicant')->user()->programme !== 'Undergraduate')
+                <div class="form-group row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label class="col-form-label">Country of Studies</label>
+                        <div>
+                            <select class="js-example-basic-single form-control" name="country_id" id="countrySelectOptions">
+                                <option value="">Select Country</option>
+                                @foreach ($countries as $country)
+                                <option value="{{ $country->id }}"
+                                    @if($applicant->applicantSchoolData->country_id === $country->id) selected @endif
+                                    @if (old('country_id') == $country->id) selected @endif
+                                >
+                                    {{ $country->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('country_id')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="form-group row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="phone" class="col-form-label">Course of Study</label>
@@ -128,6 +153,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">Name of Institution</label>
+                        @if(auth('applicant')->user()->programme === 'Undergraduate')
                         <div>
                             <input type="text" class="form-control" placeholder="Name of Institution"
                                 value="{{ $applicant->applicantSchoolData->name_of_institution ?? old('name_of_institution') }}" name="name_of_institution">
@@ -137,6 +163,18 @@
                             </div>
                             @enderror
                         </div>
+                        @else
+                        <div>
+                            <select class="js-example-basic-single form-control" id="nameOfInstitutionSelect" name="name_of_institution">
+                                <option value="">Select School Names</option>
+                            </select>
+                            @error('name_of_institution')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        @endif
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">Admission Status</label>
@@ -164,36 +202,47 @@
                         </div>
                     </div>
                 </div>
-                @if(auth('applicant')->user()->programme !== 'Undergraduate')
-                <div class="form-group row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label class="col-form-label">Country of Studies</label>
-                        <div>
-                            <select class="js-example-basic-single form-control" name="country_id">
-                                <option value="">Select Country</option>
-                                @foreach ($countries as $country)
-                                <option value="{{ $country->id }}"
-                                    @if($applicant->applicantSchoolData->country_id === $country->id) selected @endif
-                                    @if (old('country_id') == $country->id) selected @endif
-                                >
-                                    {{ $country->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('country_id')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                @endif
+                
                 <div>
-                    <button type="submit" class="btn btn-primary">Save & Continue</button>
+                    @if (auth('applicant')->user()->status === 'Applying')
+                        <button type="submit" class="btn btn-primary">Save & Continue</button>
+                    @else
+                        <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
+                    @endif
                 </div>
             </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('custom_scripts')
+    <script>
+        $(() => {
+            $('#countrySelectOptions').change(e => {
+                const selectedCountry = $("#countrySelectOptions option:selected").val();
+                getSchools(selectedCountry)
+            })
+        })
+
+        function getSchools(countryId) {
+            $.ajax({
+                url: `/api/schools?country_id=${countryId}`,
+                method: 'get',
+                success: function(data) {
+                    let html = ``
+                    
+                    data.forEach(element => {
+                        html = `${html}
+                                <option value="${element.school_name}"
+                                >
+                                    ${element.school_name}
+                                </option>`
+                    });
+                    
+                    $('#nameOfInstitutionSelect').html(html)
+                }
+            })
+        }
+    </script>
 @endsection

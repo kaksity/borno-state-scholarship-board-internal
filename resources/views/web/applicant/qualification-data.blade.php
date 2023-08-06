@@ -76,7 +76,11 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    @if (auth('applicant')->user()->status === 'Applying')
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    @else
+                        <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
+                    @endif
                 </div>
             </form>
 

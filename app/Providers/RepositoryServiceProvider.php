@@ -12,6 +12,7 @@ use App\Repositories\Implementations\CountryRepositoryImplementation;
 use App\Repositories\Implementations\DocumentTypeRepositoryImplementation;
 use App\Repositories\Implementations\LgaRepositoryImplementation;
 use App\Repositories\Implementations\QualificationTypeRepositoryImplementation;
+use App\Repositories\Implementations\SchoolRepositoryImplementation;
 use App\Repositories\Interfaces\ApplicantBioDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantPaymentDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantQualificationDataRepositoryInterface;
@@ -22,6 +23,7 @@ use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\DocumentTypeRepositoryInterface;
 use App\Repositories\Interfaces\LgaRepositoryInterface;
 use App\Repositories\Interfaces\QualificationTypeRepositoryInterface;
+use App\Repositories\Interfaces\SchoolRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -79,6 +81,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ApplicantPaymentDataRepositoryInterface::class,
             ApplicantPaymentDataRepositoryImplementation::class
+        );
+        $this->app->bind(
+            SchoolRepositoryInterface::class,
+            SchoolRepositoryImplementation::class
         );
     }
 

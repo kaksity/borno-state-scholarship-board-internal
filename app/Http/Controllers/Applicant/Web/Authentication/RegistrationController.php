@@ -44,16 +44,15 @@ class RegistrationController extends Controller
 
         $createApplicantOptions = $request->safe()->merge([
             'year' => Carbon::now()->year,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'status' => 'Applying'
         ])->all();
 
         $this->applicantServiceInterface->createApplicantRecord(
             $createApplicantOptions
         );
 
-
-
-        auth()->attempt([
+        auth('applicant')->attempt([
             'email' => $request->email,
             'password' => $request->password
         ]);
