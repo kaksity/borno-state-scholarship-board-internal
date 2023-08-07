@@ -25,7 +25,9 @@ use App\Http\Controllers\Applicant\Web\Authentication\RequestResetPasswordContro
 |
 */
 
-
+Route::get('/', function() {
+   return redirect()->route('show-login');
+});
 Route::group(['prefix' => 'applicant'], function () {
 
     Route::group(['prefix' => 'authentication'], function () {
@@ -53,7 +55,7 @@ Route::group(['prefix' => 'applicant'], function () {
     });
 
     Route::group(['middleware' => ['auth:applicant']], function () {
-        Route::group(['middleware' => ['verify.payment.status']], function () {
+        // Route::group(['middleware' => ['verify.payment.status']], function () {
             Route::get('bio-data', [
                 ApplicantBioDataController::class, 'create'
             ])->name('show-applicant-bio-data-form');
@@ -87,7 +89,7 @@ Route::group(['prefix' => 'applicant'], function () {
             Route::put('submit', [
                 ApplicantPreviewDataController::class, 'update'
             ])->name('process-applicant-submit-form');
-        });
+        // });
 
         Route::get('payment-data', [
             ApplicantPaymentDataController::class, 'create'
