@@ -33,7 +33,10 @@ class ApplicantPaymentDataController extends Controller
      */
     public function create()
     {
-        return view('web.applicant.application-payment-data');
+        $remitaPaymentInformation = null;
+        return view('web.applicant.application-payment-data')->with([
+            'remitaPaymentInformation' => $remitaPaymentInformation
+        ]);
     }
 
     /**
@@ -45,35 +48,53 @@ class ApplicantPaymentDataController extends Controller
     public function store()
     {
         $loggedInApplicant = auth('applicant')->user();
-        
 
-        DB::transaction(function () use ($loggedInApplicant) {
+        $remitaPaymentInformation = DB::transaction(function () use ($loggedInApplicant) {
             
-            // $applicationFee = env('DEFAULT_APPLICANT_PAYMENT_AMOUNT');
+            $applicationFee = env('DEFAULT_APPLICANT_PAYMENT_AMOUNT');
 
-            // $remitaPaymentOptions = [
-            //     'surname' => $loggedInApplicant->surname,
-            //     'other_names' => $loggedInApplicant->other_names,
-            //     'email_address' => $loggedInApplicant->email,
-            //     'description' => 'Payment for Scholarship Application Fees',
-            //     'amount' => $applicationFee,
-            //     'service_type_id' => env('REMITA_SERVICE_TYPE_ID'),
-            // ];
-            
-            // $response = $this->remitaServiceInterface->initiatePayment($remitaPaymentOptions);
-            // $applicantPayment = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataFiltered([
-            //     'applicant_id' => $loggedInApplicant->id,
-            //     'status' => 'paid'
-            // ]);
+            $remitaPaymentOptions = [
+                'surname' => $loggedInApplicant->surname,
+                'other_names' => $loggedInApplicant->other_names,
+                'email_address' => $loggedInApplicant->email,
+                'description' => 'Payment for Scholarship Application Fees',
+                'amount' => $applicationFee,
+                'service_type_id' => env('REMITA_SERVICE_TYPE_ID'),
+            ];
 
-            // if (count($applicantPayment) === 0) {
-            //     $this->applicantPaymentDataServiceInterface->createApplicantPaymentDataRecord([
-            //         'applicant_id' => $loggedInApplicant->id,
-            //         'amount' => env('DEFAULT_APPLICANT_PAYMENT_AMOUNT'),
-            //     ]);
-            // }
+            $applicantPayments = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataFiltered([
+                'applicant_id' => $loggedInApplicant->id,
+            ]);
+
+            $applicantPaymentData = $applicantPayments[0] ?? null;
+
+            if (is_null($applicantPaymentData)) {
+                
+                $response = $this->remitaServiceInterface->initiatePayment($remitaPaymentOptions);
+
+                $applicantPaymentData = $this->applicantPaymentDataServiceInterface->createApplicantPaymentDataRecord([
+                    'applicant_id' => $loggedInApplicant->id,
+                    'rrr' => $response['rrr'],
+                    'order_id' => $response['order_id'],
+                    'amount' => $response['amount'],
+                ]);
+            }
+
+            $remitaConfigurations = $this->remitaServiceInterface->getRemitaConfigurations();
+            return [
+                'rrr' => $applicantPaymentData->rrr,
+                'order_id' => $applicantPaymentData->order_id,
+                'hash' => $this->remitaServiceInterface->generateRemitaHash([
+                    'merchant_id' => $remitaConfigurations['merchant_id'],
+                    'rrr' => $applicantPaymentData->rrr,
+                    'api_key' => $remitaConfigurations['api_key'],
+                ], false),
+                'merchant_id' => $remitaConfigurations['merchant_id'],
+                'public_key' => $remitaConfigurations['public_key'],
+            ];
         });
-        
-        return redirect()->route('show-applicant-bio-data-form');
+        return view('web.applicant.application-payment-data')->with([
+            'remitaPaymentInformation' => $remitaPaymentInformation
+        ]);
     }
 }
