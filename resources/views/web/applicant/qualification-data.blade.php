@@ -76,11 +76,11 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    @if (auth('applicant')->user()->status === 'Applying')
+                    {{-- @if (auth('applicant')->user()->status === 'Applying') --}}
                         <button type="submit" class="btn btn-primary">Save</button>
-                    @else
+                    {{-- @else
                         <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
-                    @endif
+                    @endif --}}
                 </div>
             </form>
 

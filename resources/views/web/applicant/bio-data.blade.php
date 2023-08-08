@@ -204,11 +204,11 @@
                 </div>
                 
                 <div>
-                    @if (auth('applicant')->user()->status === 'Applying')
+                    {{-- @if (auth('applicant')->user()->status === 'Applying') --}}
                         <button type="submit" class="btn btn-primary">Save & Continue</button>
-                    @else
+                    {{-- @else
                         <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
-                    @endif
+                    @endif --}}
                 </div>
             </form>
         </div>
