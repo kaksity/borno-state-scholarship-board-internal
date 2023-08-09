@@ -17,7 +17,7 @@ class RemitaGatewayWebHookController extends Controller
     public function processWebHook(Request $request)
     {
         $rrr = $request[0]['rrr'];
-
+        
         $applicationPayment = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataByReference(
             $rrr
         );

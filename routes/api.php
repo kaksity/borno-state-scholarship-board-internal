@@ -3,7 +3,7 @@
 use App\Http\Controllers\Applicant\Api\SchoolsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\WebHook\RemitaGatewayWebHookController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::apiResource('/schools', SchoolsController::class);
+Route::post('/webhook/remita', [RemitaGatewayWebHookController::class, 'processWebHook']);

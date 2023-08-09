@@ -80,7 +80,7 @@
                                     <h5>Generated RRR</h5>
                                     <div>
                                         <input type="text" class="form-control" id="remitaRRR" disabled placeholder="Generated RRR"
-                                            value="{{ $remitaPaymentInformation['rrr']}} ( {{ $remitaPaymentInformation['transaction_status'] ?? $applicantPaymentData->status}} )">
+                                            value="{{ $remitaPaymentInformation['rrr']}} ( {{ $remitaPaymentInformation['transaction_status'] ?? $applicantPaymentData->status ?? 'pending' }} )">
                                         @error('course_of_study')
                                         <div class="p-1 text-danger">
                                             {{ $message }}
