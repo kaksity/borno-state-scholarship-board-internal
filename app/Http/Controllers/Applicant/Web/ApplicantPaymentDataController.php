@@ -33,9 +33,19 @@ class ApplicantPaymentDataController extends Controller
      */
     public function create()
     {
+        $applicant = auth('applicant')->user();
+        
+        $applicantPayments = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataFiltered([
+            'applicant_id' => $applicant->id,
+        ]);
+
+        $applicantPaymentData = $applicantPayments[0] ?? null;
+        
         $remitaPaymentInformation = null;
         return view('web.applicant.application-payment-data')->with([
-            'remitaPaymentInformation' => $remitaPaymentInformation
+            'remitaPaymentInformation' => $remitaPaymentInformation,
+            'applicantPaymentData' => $applicantPaymentData,
+            'applicant' => $applicant
         ]);
     }
 
@@ -49,7 +59,7 @@ class ApplicantPaymentDataController extends Controller
     {
         $loggedInApplicant = auth('applicant')->user();
 
-        $remitaPaymentInformation = DB::transaction(function () use ($loggedInApplicant) {
+        [$remitaPaymentInformation, $applicantPaymentData] = DB::transaction(function () use ($loggedInApplicant) {
             
             $applicationFee = env('DEFAULT_APPLICANT_PAYMENT_AMOUNT');
 
@@ -81,20 +91,38 @@ class ApplicantPaymentDataController extends Controller
             }
 
             $remitaConfigurations = $this->remitaServiceInterface->getRemitaConfigurations();
-            return [
+            
+            $paymentHash = $this->remitaServiceInterface->generateRemitaHash([
+                'merchant_id' => $remitaConfigurations['merchant_id'],
+                'service_type_id' => $remitaConfigurations['service_type_id'],
+                'amount' => env('DEFAULT_APPLICANT_PAYMENT_AMOUNT'),
+                'api_key' => $remitaConfigurations['api_key'],
+                'order_id' => $applicantPaymentData->order_id,
+            ], true);
+            
+            $apiVerificationHash = $this->remitaServiceInterface->generateRemitaHash([
+                'merchant_id' => $remitaConfigurations['merchant_id'],
+                'rrr' => $applicantPaymentData->rrr,
+                'api_key' => $remitaConfigurations['api_key'],
+            ], false);
+
+            $remitaPaymentInformation =  [
                 'rrr' => $applicantPaymentData->rrr,
                 'order_id' => $applicantPaymentData->order_id,
-                'hash' => $this->remitaServiceInterface->generateRemitaHash([
-                    'merchant_id' => $remitaConfigurations['merchant_id'],
-                    'rrr' => $applicantPaymentData->rrr,
-                    'api_key' => $remitaConfigurations['api_key'],
-                ], false),
+                'amount' => env('DEFAULT_APPLICANT_PAYMENT_AMOUNT'),
+                'hash' => $paymentHash,
                 'merchant_id' => $remitaConfigurations['merchant_id'],
                 'public_key' => $remitaConfigurations['public_key'],
+                'transaction_status' => $applicantPaymentData->status,
+                'api_verification_hash' => $apiVerificationHash,
             ];
+
+            return [$remitaPaymentInformation, $applicantPaymentData];
         });
         return view('web.applicant.application-payment-data')->with([
-            'remitaPaymentInformation' => $remitaPaymentInformation
+            'remitaPaymentInformation' => $remitaPaymentInformation,
+            'applicantPaymentData' => $applicantPaymentData,
+            'applicant' => $loggedInApplicant
         ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Services\Interfaces\ApplicantPaymentDataServiceInterface;
+use App\Services\Interfaces\RemitaServiceInterface;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 class VerifyApplicantPaymentStatus
 {
     public function __construct(
-        private ApplicantPaymentDataServiceInterface $applicantPaymentDataServiceInterface
+        private ApplicantPaymentDataServiceInterface $applicantPaymentDataServiceInterface,
+        private RemitaServiceInterface $remitaServiceInterface,
     )
     {}
 
@@ -25,11 +28,35 @@ class VerifyApplicantPaymentStatus
 
         $applicantPayment = $this->applicantPaymentDataServiceInterface->getApplicantPaymentDataFiltered([
             'applicant_id' => $loggedInApplicant->id,
-            'status' => 'paid'
         ]);
+        
         if (count($applicantPayment) == 0) {
-            return redirect()->route('show-applicant-payment-data')->with('status', 'You must complete the payment step before proceeding');
+            return redirect()->route(
+                'show-applicant-payment-data'
+            )->with('status', 'You must complete the payment step before proceeding');
         }
-        return $next($request);
+
+        $applicantPaymentPaymentData = $applicantPayment[0];
+
+        if ($applicantPaymentPaymentData->status === 'paid') {
+            return $next($request);
+        }
+
+        $response = $this->remitaServiceInterface->verifyPayment([
+            'rrr' => $applicantPaymentPaymentData->rrr
+        ]);
+        
+        if ($response->status === '00') {
+            $this->applicantPaymentDataServiceInterface->updateApplicantPaymentDataRecord([
+                'completed_payment_at' => Carbon::now(),
+                'status' => 'paid'
+            ], $applicantPaymentPaymentData->id);
+
+            return $next($request);
+        }
+
+        return redirect()->route(
+            'show-applicant-payment-data'
+        )->with('status', 'You must complete the payment step before proceeding');
     }
 }

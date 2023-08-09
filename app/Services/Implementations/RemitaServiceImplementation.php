@@ -55,6 +55,7 @@ class RemitaServiceImplementation implements RemitaServiceInterface {
             'merchant_id' => env('REMITA_MERCHANT_ID'),
             'api_key' => env('REMITA_API_KEY'),
             'url' => env('REMITA_URL'),
+            'service_type_id' => env('REMITA_SERVICE_TYPE_ID'),
             'public_key' => env('REMITA_PUBLIC_KEY')
         ];
     }
@@ -73,5 +74,26 @@ class RemitaServiceImplementation implements RemitaServiceInterface {
             );
         }
         
+    }
+
+    public function verifyPayment($options)
+    {
+        $remitaConfigurations = $this->getRemitaConfigurations();
+        $merchantId = $remitaConfigurations['merchant_id'];
+
+        $apiVerificationHash = $this->generateRemitaHash([
+            'merchant_id' => $merchantId,
+            'rrr' => $options['rrr'],
+            'api_key' => $remitaConfigurations['api_key'],
+        ], false);
+
+        $url = "{$remitaConfigurations['url']}/echannelsvc/{$merchantId}/{$options['rrr']}/{$apiVerificationHash}/status.reg";
+
+        $response = Http::withHeaders([
+            'Authorization' => "remitaConsumerKey={$merchantId},remitaConsumerToken={$apiVerificationHash}",
+            'Content-Type' => 'application/json',
+        ])->get($url);
+
+        return json_decode($response->body());
     }
 }
