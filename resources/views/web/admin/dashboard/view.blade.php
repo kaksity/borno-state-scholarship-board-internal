@@ -30,11 +30,11 @@
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
                 <div class="avatar flex-shrink-0">
-                  <img src="../admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                 </div>
               </div>
               <span class="d-block mb-1">Local Government Areas</span>
-              {{-- <h3 class="card-title text-nowrap mb-2">{{ count($lgas) }}</h3> --}}
+              <h3 class="card-title text-nowrap mb-2">{{ count($lgas) }}</h3>
             </div>
           </div>
         </div>
@@ -43,11 +43,11 @@
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
                 <div class="avatar flex-shrink-0">
-                  <img src="../admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                 </div>
               </div>
-              <span class="d-block mb-1">Wards</span>
-              {{-- <h3 class="card-title text-nowrap mb-2">{{ count($wards) }}</h3> --}}
+              <span class="d-block mb-1">Schools</span>
+              <h3 class="card-title text-nowrap mb-2">{{ count($schools) }}</h3>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
                 <div class="avatar flex-shrink-0">
-                  <img src="../admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                 </div>
               </div>
               <span class="d-block mb-1">Categories</span>
@@ -69,7 +69,7 @@
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
                 <div class="avatar flex-shrink-0">
-                  <img src="../admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                 </div>
               </div>
               <span class="d-block mb-1">Facilities</span>
@@ -88,7 +88,7 @@
                 <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Total)</span>
@@ -97,7 +97,7 @@
                 <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Male)</span>
@@ -106,7 +106,7 @@
                 <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Female)</span>
@@ -127,7 +127,7 @@
                 <div class="col-lg-3 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Under Five(5))</span>
@@ -136,7 +136,7 @@
                 <div class="col-lg-3 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Aged)</span>
@@ -145,7 +145,7 @@
                 <div class="col-lg-3 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Pregnant Women)</span>
@@ -154,7 +154,7 @@
                 <div class="col-lg-3 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Physically Challenged)</span>
@@ -163,7 +163,7 @@
                 <div class="col-lg-3 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
-                      <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
                   <span class="fw-semibold d-block mb-1">Enrollments(Poor)</span>
