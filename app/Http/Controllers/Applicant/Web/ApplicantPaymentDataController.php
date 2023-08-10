@@ -31,7 +31,7 @@ class ApplicantPaymentDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
         $applicant = auth('applicant')->user();
         

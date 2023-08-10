@@ -32,7 +32,7 @@ class VerifyApplicantPaymentStatus
         
         if (count($applicantPayment) == 0) {
             return redirect()->route(
-                'show-applicant-payment-data'
+                'applicant.applicant-payment-data.index'
             )->with('status', 'You must complete the payment step before proceeding');
         }
 
@@ -56,7 +56,7 @@ class VerifyApplicantPaymentStatus
         }
 
         return redirect()->route(
-            'show-applicant-payment-data'
+            'applicant.applicant-payment-data.index'
         )->with('status', 'You must complete the payment step before proceeding');
     }
 }

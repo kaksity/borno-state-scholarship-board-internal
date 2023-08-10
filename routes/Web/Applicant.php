@@ -50,7 +50,7 @@ Route::group([], function () {
         ])->middleware('auth:applicant');
     });
     Route::group(['middleware' => ['auth:applicant']], function () {
-        // Route::group(['middleware' => ['verify.payment.status']], function () {
+        Route::group(['middleware' => ['verify.payment.status']], function () {
             Route::resource('/bio-data', ApplicantBioDataController::class, [
                 'names' => [
                     'index' => 'applicant.applicant-bio-data.index',
@@ -80,13 +80,13 @@ Route::group([], function () {
                     'destroy' => 'applicant.applicant-preview-data.destroy',
                 ]
             ]);
-        // });
+        });
 
-        Route::get('payment-data', [
-            ApplicantPaymentDataController::class, 'create'
-        ])->name('show-applicant-payment-data');
-        Route::post('initiate-transaction', [
-            ApplicantPaymentDataController::class, 'store'
-        ])->name('process-initiate-transaction');
+        Route::resource('payment-data', ApplicantPaymentDataController::class, [
+            'names' => [
+                'index' => 'applicant.applicant-payment-data.index',
+                'store' => 'applicant.applicant-payment-data.store',
+            ]
+        ]);
     });
 });
