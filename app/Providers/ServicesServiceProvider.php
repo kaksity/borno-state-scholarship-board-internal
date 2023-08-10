@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Implementations\AdminServiceImplementation;
 use App\Services\Implementations\ApplicantBioDataServiceImplementation;
 use App\Services\Implementations\ApplicantPaymentDataServiceImplementation;
 use App\Services\Implementations\ApplicantQualificationDataServiceImplementation;
@@ -14,6 +15,7 @@ use App\Services\Implementations\LgaServiceImplementation;
 use App\Services\Implementations\QualificationTypeServiceImplementation;
 use App\Services\Implementations\RemitaServiceImplementation;
 use App\Services\Implementations\SchoolServiceImplementation;
+use App\Services\Interfaces\AdminServiceInterface;
 use App\Services\Interfaces\ApplicantBioDataServiceInterface;
 use App\Services\Interfaces\ApplicantPaymentDataServiceInterface;
 use App\Services\Interfaces\ApplicantQualificationDataServiceInterface;
@@ -86,6 +88,11 @@ class ServicesServiceProvider extends ServiceProvider
         $this->app->bind(
             SchoolServiceInterface::class,
             SchoolServiceImplementation::class
+        );
+
+        $this->app->bind(
+            AdminServiceInterface::class,
+            AdminServiceImplementation::class
         );
     }
 

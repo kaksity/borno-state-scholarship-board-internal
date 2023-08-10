@@ -3,19 +3,24 @@
 namespace App\Http\Controllers\Admin\Web\Authentication;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Web\Authentication\ChangePasswordRequest as AuthenticationChangePasswordRequest;
-use App\Http\Requests\Web\Authentication\ChangePasswordRequest;
+use App\Http\Requests\Admin\Web\Authentication\ChangePasswordRequest;
+use App\Services\Interfaces\AdminServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordController extends Controller
 {
+    public function __construct(
+        private AdminServiceInterface $adminServiceInterface
+    )
+    {}
+
     public function index()
     {
         return view('web.admin.authentications.change-password');
     }
 
-    public function store(AuthenticationChangePasswordRequest $request)
+    public function store(ChangePasswordRequest $request)
     {
         $loggedInAdmin = auth('admin')->user();
         
@@ -23,9 +28,10 @@ class ChangePasswordController extends Controller
             return back()->with('error', 'Old password is not correct');
         }
 
-        $loggedInAdmin->update([
+        $this->adminServiceInterface->updateAdminRecord([
             'password' => Hash::make($request->new_password)
-        ]);
+        ], $loggedInAdmin->id);
+
         return back()->with('success', 'Password was changed successfully');
     }
 }

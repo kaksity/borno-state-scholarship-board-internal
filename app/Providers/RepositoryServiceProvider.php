@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\Implementations\AdminRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantBioDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantPaymentDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantQualificationDataRepositoryImplementation;
@@ -13,6 +14,7 @@ use App\Repositories\Implementations\DocumentTypeRepositoryImplementation;
 use App\Repositories\Implementations\LgaRepositoryImplementation;
 use App\Repositories\Implementations\QualificationTypeRepositoryImplementation;
 use App\Repositories\Implementations\SchoolRepositoryImplementation;
+use App\Repositories\Interfaces\AdminRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantBioDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantPaymentDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantQualificationDataRepositoryInterface;
@@ -85,6 +87,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             SchoolRepositoryInterface::class,
             SchoolRepositoryImplementation::class
+        );
+        $this->app->bind(
+            AdminRepositoryInterface::class,
+            AdminRepositoryImplementation::class
         );
     }
 
