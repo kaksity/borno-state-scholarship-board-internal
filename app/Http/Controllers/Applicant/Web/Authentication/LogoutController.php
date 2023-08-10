@@ -9,8 +9,8 @@ class LogoutController extends Controller
 {
     public function store()
     {
-        auth()->logout();
+        auth('applicant')->logout();
 
-        return redirect()->route('show-login');
+        return redirect()->route('applicant.login.index');
     }
 }

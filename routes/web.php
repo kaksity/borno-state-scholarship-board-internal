@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('/admin')->group(__DIR__.'/Web/Admin.php');
-// Route::prefix('/applicant')->group(__DIR__.'/Web/Applicant.php');
+Route::prefix('/applicant')->group(__DIR__.'/Web/Applicant.php');

@@ -28,7 +28,7 @@ class ApplicantPreviewDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
 
         $applicant = $this->applicantServiceInterface->getApplicantByEmailAddress(
@@ -58,7 +58,7 @@ class ApplicantPreviewDataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function store()
     {
         
         $loggedInApplicant = auth('applicant')->user();

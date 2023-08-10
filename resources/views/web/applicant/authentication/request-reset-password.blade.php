@@ -15,7 +15,7 @@
     {{ session('success') }}
 </div>
 @endif
-<form action="{{ route('process-request-reset-password') }}" method="POST">
+<form action="{{ route('applicant.reset-password.store') }}" method="POST">
     @csrf
     <div class="form-group mb-3">
         <label for="name" class="form-label">Email Address</label>
@@ -32,9 +32,9 @@
 </form>
 <div class="text-center">
     
-    <p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('show-registration') }}" class="f-w-400">Create
+    <p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('applicant.registration.index') }}" class="f-w-400">Create
         an account</a></p>
-    <p class="mt-4">Already have an account? <a href="{{ route('show-login') }}" class="f-w-400">Log into your
+    <p class="mt-4">Already have an account? <a href="{{ route('applicant.login.index') }}" class="f-w-400">Log into your
         account</a></p>
 </div>
 

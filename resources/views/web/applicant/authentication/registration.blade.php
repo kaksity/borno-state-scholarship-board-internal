@@ -11,7 +11,7 @@
 </div>
 @endif
 
-<form action="{{ route('process-registration') }}" method="POST">
+<form action="{{ route('applicant.registration.store') }}" method="POST">
     @csrf
     <div class="form-group mb-3">
         <label for="name" class="form-label">Surname</label>
@@ -86,8 +86,8 @@
     <button class="btn btn-primary btn-block mb-4" id="submitForm">Create an Account</button>
 </form>
 <div class="text-center">
-    <p class="mb-2 mt-4 text-muted">Forgot password? <a href="{{ route('show-request-reset-password') }}" class="f-w-400">Reset</a></p>
-    <p class="mt-4">Already have an account? <a href="{{ route('show-login') }}" class="f-w-400">Log into your
+    <p class="mb-2 mt-4 text-muted">Forgot password? <a href="{{ route('applicant.reset-password.index') }}" class="f-w-400">Reset</a></p>
+    <p class="mt-4">Already have an account? <a href="{{ route('applicant.login.index') }}" class="f-w-400">Log into your
             account</a></p>
 </div>
 @endsection

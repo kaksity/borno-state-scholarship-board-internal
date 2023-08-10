@@ -10,7 +10,7 @@
     {{ session('status') }}
 </div>
 @endif
-<form action="{{ route('process-login') }}" method="POST">
+<form action="{{ route('applicant.login.store') }}" method="POST">
     @csrf
     <div class="form-group mb-3">
         <label for="name" class="form-label">Email Address</label>
@@ -42,8 +42,8 @@
     <button class="btn btn-block btn-primary mb-4" id="submitForm">Log In</button>
 </form>
 <div class="text-center">
-    <p class="mb-2 mt-4 text-muted">Forgot password? <a href="{{ route('show-request-reset-password') }}" class="f-w-400">Reset</a></p>
-    <p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('show-registration') }}" class="f-w-400">Create
+    <p class="mb-2 mt-4 text-muted">Forgot password? <a href="{{ route('applicant.reset-password.index') }}" class="f-w-400">Reset</a></p>
+    <p class="mb-0 text-muted">Don’t have an account? <a href="{{ route('applicant.registration.index') }}" class="f-w-400">Create
             an account</a></p>
 </div>
 

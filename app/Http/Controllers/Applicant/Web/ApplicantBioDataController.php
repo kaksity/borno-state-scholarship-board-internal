@@ -25,12 +25,7 @@ class ApplicantBioDataController extends Controller
     )
     {
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
         $lgas = $this->lgaServiceInterface->getLgas();
 
@@ -65,7 +60,7 @@ class ApplicantBioDataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApplicantBioDataRequest $request)
+    public function store(UpdateApplicantBioDataRequest $request)
     {
         $applicant = $this->applicantServiceInterface->getApplicantByEmailAddress(
             auth('applicant')->user()->email,
@@ -91,6 +86,6 @@ class ApplicantBioDataController extends Controller
                 'lga_id' => $request->lga_id,
             ], $applicant->applicantBioData->id);
         });
-        return redirect()->route('show-applicant-qualification-form');
+        return redirect()->route('applicant.applicant-qualification-data.index');
     }
 }

@@ -13,7 +13,7 @@ class LoginController extends Controller
     )
     {}
 
-    public function create()
+    public function index()
     {
         return view('web.applicant.authentication.login');
     }
@@ -30,6 +30,6 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid login credentials');
         }
 
-        return redirect()->route('show-applicant-bio-data-form');
+        return redirect()->route('applicant.applicant-bio-data.index');
     }
 }
