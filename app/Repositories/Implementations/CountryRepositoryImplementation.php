@@ -13,8 +13,34 @@ class CountryRepositoryImplementation implements CountryRepositoryInterface
     {
         
     }
+
+    public function createCountryRecord($data)
+    {
+        return $this->country->create($data);
+    }
+
+    public function updateCountryRecord($data, $id)
+    {
+        $this->country->where([
+            'id' => $id
+        ])->update($data);
+    }
+
+    public function deleteCountryRecord($id)
+    {
+        $this->country->where([
+            'id' => $id
+        ])->delete();
+    }
+
+    public function getCountryById($id, $relationships = [])
+    {
+        return $this->country->with($relationships)->where([
+            'id' => $id
+        ])->first();
+    }
     public function getCountries($relationships = [])
     {
-        return $this->country->orderBy('name', 'ASC')->get();
+        return $this->country->with($relationships)->orderBy('name', 'ASC')->get();
     }
 }

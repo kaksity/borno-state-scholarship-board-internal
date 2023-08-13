@@ -25,7 +25,7 @@
     </div>
     <div class="col-lg-12 col-md-12 order-1">
       <div class="row">
-        <div class="col-3 mb-4">
+        <div class="col-6 mb-4">
           <div class="card">
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
@@ -34,11 +34,11 @@
                 </div>
               </div>
               <span class="d-block mb-1">Local Government Areas</span>
-              <h3 class="card-title text-nowrap mb-2">{{ count($lgas) }}</h3>
+              <h3 class="card-title text-nowrap mb-2">{{ $numberOfLgas }}</h3>
             </div>
           </div>
         </div>
-        <div class="col-3 mb-4">
+        <div class="col-6 mb-4">
           <div class="card">
             <div class="card-body">
               <div class="card-title d-flex align-items-start justify-content-between">
@@ -47,33 +47,54 @@
                 </div>
               </div>
               <span class="d-block mb-1">Schools</span>
-              <h3 class="card-title text-nowrap mb-2">{{ count($schools) }}</h3>
+              <h3 class="card-title text-nowrap mb-2">{{ $numberOfSchools }}</h3>
             </div>
           </div>
         </div>
-        <div class="col-3 mb-4">
+    </div>
+    <div class="col-lg-12 col-md-12 order-1">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-6 mb-4">
           <div class="card">
             <div class="card-body">
-              <div class="card-title d-flex align-items-start justify-content-between">
-                <div class="avatar flex-shrink-0">
-                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+              <div class="row d-flex">
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Applicants(Total)</span>
+                  <h3 class="card-title mb-2">{{ $undergraduate['total'] + $masters['total'] + $doctorate['total'] }}</h3>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Applicants(Undergraduate)</span>
+                  <h3 class="card-title mb-2">{{ $undergraduate['total'] }}</h3>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Applicants(Masters)</span>
+                  <h3 class="card-title mb-2">{{ $masters['total'] }}</h3>
+                </div>
+                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Applicants(Doctorate)</span>
+                  <h3 class="card-title mb-2">{{ $doctorate['total'] }}</h3>
                 </div>
               </div>
-              <span class="d-block mb-1">Categories</span>
-              {{-- <h3 class="card-title text-nowrap mb-2">{{ count($categories) }}</h3> --}}
-            </div>
-          </div>
-        </div>
-        <div class="col-3 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <div class="card-title d-flex align-items-start justify-content-between">
-                <div class="avatar flex-shrink-0">
-                  <img src="/admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
-                </div>
-              </div>
-              <span class="d-block mb-1">Facilities</span>
-              {{-- <h3 class="card-title text-nowrap mb-2">{{ count($facilities) }}</h3> --}}
             </div>
           </div>
         </div>
@@ -91,8 +112,8 @@
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Total)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($maleEnrollments) + count($femaleEnrollments) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Undergraduate Applicants(Total)</span>
+                  <h3 class="card-title mb-2">{{ $undergraduate['total'] }}</h3>
                 </div>
                 <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
@@ -100,8 +121,8 @@
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Male)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($maleEnrollments) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Undergraduate Applicants(Applying)</span>
+                  <h3 class="card-title mb-2">{{ $undergraduate['applying'] }}</h3>
                 </div>
                 <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
@@ -109,8 +130,8 @@
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Female)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($femaleEnrollments) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Undergraduate Applicants(Submitted)</span>
+                  <h3 class="card-title mb-2">{{ $undergraduate['submitted'] }}</h3>
                 </div>
               </div>
             </div>
@@ -124,50 +145,71 @@
           <div class="card">
             <div class="card-body">
               <div class="row d-flex">
-                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Under Five(5))</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($underFive) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Masters Applicants(Total)</span>
+                  <h3 class="card-title mb-2">{{ $masters['total'] }}</h3>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Aged)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($aged) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Masters Applicants(Applying)</span>
+                  <h3 class="card-title mb-2">{{ $masters['applying'] }}</h3>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Pregnant Women)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($pregnantWomen) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Masters Applicants(Submitted)</span>
+                  <h3 class="card-title mb-2">{{ $masters['submitted'] }}</h3>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6 mb-4">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 order-1">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-6 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row d-flex">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Physically Challenged)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($physicallyChallenged) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Doctorate Applicants(Total)</span>
+                  <h3 class="card-title mb-2">{{ $doctorate['total'] }}</h3>
                 </div>
-                <div class="col-lg-3 col-md-12 col-6 mb-4">
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
                   <div class="card-title d-flex align-items-start justify-content-between">
                     <div class="avatar flex-shrink-0">
                       <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                     </div>
                   </div>
-                  <span class="fw-semibold d-block mb-1">Enrollments(Poor)</span>
-                  {{-- <h3 class="card-title mb-2">{{ count($poor) }}</h3> --}}
+                  <span class="fw-semibold d-block mb-1">Doctorate Applicants(Applying)</span>
+                  <h3 class="card-title mb-2">{{ $doctorate['applying'] }}</h3>
+                </div>
+                <div class="col-lg-4 col-md-12 col-6 mb-4">
+                  <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="avatar flex-shrink-0">
+                      <img src="/admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                    </div>
+                  </div>
+                  <span class="fw-semibold d-block mb-1">Doctorate Applicants(Submitted)</span>
+                  <h3 class="card-title mb-2">{{ $doctorate['submitted'] }}</h3>
                 </div>
               </div>
             </div>

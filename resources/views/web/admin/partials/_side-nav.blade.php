@@ -27,38 +27,55 @@
         </a>
       </li>
       <li class="menu-item">
-        {{-- <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-          <div data-i18n="Authentications">Enrollments</div>
-        </a> --}}
+          <div data-i18n="Authentications">Settings</div>
+        </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            {{-- <a href="{{ route('web.admin.enrollments.create') }}" class="menu-link">
-              <div data-i18n="Basic">Upload</div>
-            </a> --}}
+            <a href="{{ route('admin.settings.countries.index') }}" class="menu-link">
+              <div data-i18n="Basic">Countries</div>
+            </a>
           </li>
           <li class="menu-item">
-            {{-- <a href="{{ route('web.admin.enrollments.index') }}" class="menu-link">
-              <div data-i18n="Basic">View</div>
-            </a> --}}
+            <a href="{{ route('admin.settings.schools.index') }}" class="menu-link">
+              <div data-i18n="Basic">Schools</div>
+            </a>
           </li>
         </ul>
       </li>
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-          <div data-i18n="Authentications">News</div>
+          <div data-i18n="Authentications">Application</div>
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            {{-- <a href="{{ route('web.admin.news.create') }}" class="menu-link">
-              <div data-i18n="Basic">Create</div>
-            </a> --}}
+            <a href=" {{ route('admin.applicants.index', [
+              'page' => 1,
+              'per_page' => 100,
+              'programme' => 'Undergraduate'
+            ]) }} " class="menu-link">
+              <div data-i18n="Basic">Undergraduate</div>
+            </a>
           </li>
           <li class="menu-item">
-            {{-- <a href="{{ route('web.admin.news.index') }}" class="menu-link">
-              <div data-i18n="Basic">View</div>
-            </a> --}}
+            <a href=" {{ route('admin.applicants.index', [
+              'page' => 1,
+              'per_page' => 100,
+              'programme' => 'Masters'
+            ]) }} " class="menu-link">
+              <div data-i18n="Basic">Masters</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href=" {{ route('admin.applicants.index', [
+              'page' => 1,
+              'per_page' => 100,
+              'programme' => 'Doctorate'
+            ]) }} " class="menu-link">
+              <div data-i18n="Basic">Doctrate(Phd)</div>
+            </a>
           </li>
         </ul>
       </li>
@@ -68,11 +85,6 @@
           <div data-i18n="Authentications">Messages</div>
         </a>
         <ul class="menu-sub">
-          <li class="menu-item">
-            {{-- <a href="{{ route('web.admin.messages.index') }}" class="menu-link">
-              <div data-i18n="Basic">View</div>
-            </a> --}}
-          </li>
         </ul>
       </li>
       {{-- <li class="menu-item">

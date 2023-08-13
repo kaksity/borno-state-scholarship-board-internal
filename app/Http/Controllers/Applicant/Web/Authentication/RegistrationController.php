@@ -51,6 +51,6 @@ class RegistrationController extends Controller
             'password' => $request->password
         ]);
 
-        return redirect()->route('show-applicant-bio-data-form');
+        return redirect()->route('applicant.applicant-bio-data.index');
     }
 }

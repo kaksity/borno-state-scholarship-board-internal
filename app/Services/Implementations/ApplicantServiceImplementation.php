@@ -35,6 +35,22 @@ class ApplicantServiceImplementation implements ApplicantServiceInterface
             return $applicant;
         });
     }
+    public function getApplicantById($id, $relationships = [])
+    {
+        return $this->applicantRepositoryInterface->getApplicantById(
+            $id,
+            $relationships
+        );
+    }
+
+    public function getApplicantsFiltered($getApplicantsFilterOptions, $relationships = [])
+    {
+        return $this->applicantRepositoryInterface->getApplicantsFiltered(
+            $getApplicantsFilterOptions,
+            $relationships
+        );
+    }
+
     public function updateApplicantRecord($data, $id)
     {
         $this->applicantRepositoryInterface->updateApplicantRecord($data, $id);

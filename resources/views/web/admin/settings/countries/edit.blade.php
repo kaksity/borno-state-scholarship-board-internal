@@ -13,28 +13,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <form action="{{ route('web.admin.news.update', [$news->id]) }}" method="POST">
+            @if (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            <form action="{{ route('admin.settings.countries.update', [$country->id]) }}" method="POST">
                 @csrf
                 {{ method_field('PUT') }}
                 <div class="mb-3 row">
-                    <label for="html5-date-input" class="form-label">Title</label>
-                    <input class="form-control" type="text" value="{{ $news->title }}" name="title" />
-                    @error('title')
-                        <div class="p-2 text-danger">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="mb-3 row">
-                    <div class="form-check px-5">
-                        <input class="form-check-input" type="checkbox" name="is_published" {{ $news->is_published ===
-                        true ? 'checked' : '' }}/>
-                        <label class="form-check-label" for="disabledCheck1"> Is Published </label>
-                    </div>
-                </div>
-                <div>
-                    <div class="editable"></div>
-                    @error('content')
+                    <label for="html5-date-input" class="form-label">Country Name</label>
+                    <input class="form-control" type="text" value="{{ $country->name  ?? old('name') }}" name="name" />
+                    @error('name')
                         <div class="p-2 text-danger">
                             {{ $message }}
                         </div>
