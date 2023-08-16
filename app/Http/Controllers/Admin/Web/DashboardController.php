@@ -24,14 +24,17 @@ class DashboardController extends Controller
 
         $undergraduate = $this->applicantServiceInterface->getApplicantsFiltered([
             'programme' => 'Undergraduate',
+            'per_page' => 20000
         ]);
 
         $masters = $this->applicantServiceInterface->getApplicantsFiltered([
             'programme' => 'Masters',
+            'per_page' => 20000
         ]);
 
         $doctorate = $this->applicantServiceInterface->getApplicantsFiltered([
             'programme' => 'doctorate',
+            'per_page' => 20000
         ]);
 
         $applyingUndergraduate = $undergraduate->filter(function($data) {
