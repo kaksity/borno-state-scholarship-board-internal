@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            @if(auth('applicant')->user()->programme !== 'Undergraduate')
+            @if($applicant->programme !== 'Undergraduate')
             <div class="form-group row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label class="col-form-label"><b>Country of Studies</b></label>
