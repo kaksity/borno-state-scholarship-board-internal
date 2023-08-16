@@ -5,10 +5,9 @@
           <img width="60" src="/admin/imgs/logo.png" alt="logo" />
         </span>
         <div class="mt-3">
-          <h4>
-            <b>BOSCHMA
-            </b>
-          </h4>
+          <h6>
+            Borno State Scholarship Board
+          </h6>
         </div>
       </a>
       <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

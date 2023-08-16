@@ -56,16 +56,16 @@
                 <span class="app-brand-logo demo">
                   <img width="100" src="/admin/imgs/logo.png" alt="logo" />
                 </span>
-                <div class="mt-3">
+                {{-- <div class="mt-3">
                   <h4>
-                    <b>BOSCHMA
+                    <b>
                     </b>
                   </h4>
-                </div>
+                </div> --}}
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Welcome to Boschma! 👋</h4>
+            <h4 class="mb-2">Welcome to Borno State Scholarship Board! 👋</h4>
             <p class="mb-4">Please log into to your account</p>
             @if (session()->has('status'))
             <div class="alert alert-danger alert-dismissible" role="alert">

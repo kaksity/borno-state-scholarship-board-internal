@@ -15,9 +15,10 @@ use App\Http\Controllers\Applicant\Web\Authentication\RegistrationController;
 use App\Http\Controllers\Applicant\Web\Authentication\ResetPasswordController;
 
 Route::group([], function () {
-
+    Route::get('/', function() {
+        return redirect()->route('applicant.login.index');
+    });
     Route::group(['prefix' => 'authentication'], function () {
-
         Route::resource('/registration', RegistrationController::class, [
             'names' => [
                 'index' => 'applicant.registration.index',
