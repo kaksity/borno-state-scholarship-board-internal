@@ -11,9 +11,6 @@ use App\Http\Controllers\Admin\Web\Settings\SchoolsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
-    Route::get('/', function() {
-        return redirect()->route('admin.login.index');
-    });
     Route::group(['middleware' => 'auth:admin'], function () {
         Route::resource('/dashboard', DashboardController::class, [
             'names' => [

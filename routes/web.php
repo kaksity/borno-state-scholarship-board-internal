@@ -17,5 +17,9 @@ Route::get('/', function() {
     return redirect()->route('applicant.login.index');
 });
 
+Route::get('/admin/', function() {
+    return redirect()->route('admin.login.index');
+});
+
 Route::prefix('/admin')->group(__DIR__.'/Web/Admin.php');
 Route::prefix('/applicant')->group(__DIR__.'/Web/Applicant.php');
