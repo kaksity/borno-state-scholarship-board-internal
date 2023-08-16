@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function() {
-//    return redirect()->route('show-login');
-// });
+Route::get('/', function() {
+    return redirect()->route('applicant.login.index');
+});
 
 Route::prefix('/admin')->group(__DIR__.'/Web/Admin.php');
 Route::prefix('/applicant')->group(__DIR__.'/Web/Applicant.php');
