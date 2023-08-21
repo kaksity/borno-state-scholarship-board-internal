@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label for="phone" class="col-form-label">Phone Number*</label>
+                        <label for="phone" class="col-form-label">Phone Number</label>
                         <div>
                             <input type="text" class="form-control" name="phone_number"
                                 value="{{ $applicant->applicantBioData->phone_number ?? old('phone_number') }}"
@@ -110,11 +110,11 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <label for="nin" class="col-form-label">NIN*</label>
+                        <label for="nin" class="col-form-label">National Identity Number(NIN)</label>
                         <div>
                             <input type="text" class="form-control"
                                 value="{{ $applicant->applicantBioData->nin ?? old('nin') }}" name="nin"
-                                placeholder=" NIN">
+                                placeholder="National Identity Number(NIN)">
                             @error('nin')
                             <div class="p-1 text-danger">
                                 {{ $message }}

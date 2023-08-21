@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">
-                            <b>NIN</b>
+                            <b>National Identity Number(NIN)</b>
                         </label>
                         <div>
                             {{ $applicant->applicantBioData?->nin }}

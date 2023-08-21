@@ -72,7 +72,7 @@
             <select class="js-example-basic-single form-control" name="programme">
                 <option value="">Select Programme</option>
                 <option value="Undergraduate" @if (old('programme')=='Undergraduate' ) selected @endif>
-                    Undergraduate (French/Chinese language)</option>
+                    Undergraduate</option>
                 <option value="Diploma" @if (old('programme')=='Diploma' ) selected @endif>
                     Diploma
                 </option>
