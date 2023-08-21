@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QualificationTypeSeeder::class);
         $this->call(DocumentTypeSeeder::class);
         $this->call(BankSeeder::class);
+        $this->call(RemitaServiceTypeSeeder::class);
         $this->call(AdminSeeder::class);
     }
 }
