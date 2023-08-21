@@ -18,7 +18,7 @@ class RegistrationRequest extends FormRequest
             'other_names' => ['required', 'between:3,150'],
             'email' => ['required', 'between:3,150', 'email'],
             'password' => ['required', 'between:8,20', 'confirmed'],
-            'programme' => ['required', 'in:Undergraduate,Masters,Doctorate'],
+            'programme' => ['required', 'in:Undergraduate,Diploma,HND,NCE,Nursing'],
         ];
     }
 

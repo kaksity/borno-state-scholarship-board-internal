@@ -37,6 +37,8 @@ class ApplicantPreviewDataController extends Controller
                 'applicantBioData',
                 'applicantBioData.lga',
                 'applicantSchoolData',
+                'applicantBankData.bank',
+                'applicantRefereeData',
                 'applicantSchoolData.country',
                 'applicantQualificationData',
                 'applicantQualificationData.qualificationType',

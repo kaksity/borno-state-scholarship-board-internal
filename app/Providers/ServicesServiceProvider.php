@@ -3,12 +3,15 @@
 namespace App\Providers;
 
 use App\Services\Implementations\AdminServiceImplementation;
+use App\Services\Implementations\ApplicantBankDataServiceImplementation;
 use App\Services\Implementations\ApplicantBioDataServiceImplementation;
 use App\Services\Implementations\ApplicantPaymentDataServiceImplementation;
 use App\Services\Implementations\ApplicantQualificationDataServiceImplementation;
+use App\Services\Implementations\ApplicantRefereeDataServiceImplementation;
 use App\Services\Implementations\ApplicantSchoolDataServiceImplementation;
 use App\Services\Implementations\ApplicantServiceImplementation;
 use App\Services\Implementations\ApplicantUploadedDocumentDataServiceImplementation;
+use App\Services\Implementations\BankServiceImplementation;
 use App\Services\Implementations\CountryServiceImplementation;
 use App\Services\Implementations\DocumentTypeServiceImplementation;
 use App\Services\Implementations\LgaServiceImplementation;
@@ -17,12 +20,15 @@ use App\Services\Implementations\RemitaServiceImplementation;
 use App\Services\Implementations\RemitaServiceTypeServiceImplementation;
 use App\Services\Implementations\SchoolServiceImplementation;
 use App\Services\Interfaces\AdminServiceInterface;
+use App\Services\Interfaces\ApplicantBankDataServiceInterface;
 use App\Services\Interfaces\ApplicantBioDataServiceInterface;
 use App\Services\Interfaces\ApplicantPaymentDataServiceInterface;
 use App\Services\Interfaces\ApplicantQualificationDataServiceInterface;
+use App\Services\Interfaces\ApplicantRefereeDataServiceInterface;
 use App\Services\Interfaces\ApplicantSchoolDataServiceInterface;
 use App\Services\Interfaces\ApplicantServiceInterface;
 use App\Services\Interfaces\ApplicantUploadedDocumentDataServiceInterface;
+use App\Services\Interfaces\BankServiceInterface;
 use App\Services\Interfaces\CountryServiceInterface;
 use App\Services\Interfaces\DocumentTypeServiceInterface;
 use App\Services\Interfaces\LgaServiceInterface;
@@ -99,6 +105,18 @@ class ServicesServiceProvider extends ServiceProvider
         $this->app->bind(
             RemitaServiceTypeServiceInterface::class,
             RemitaServiceTypeServiceImplementation::class
+        );
+        $this->app->bind(
+            BankServiceInterface::class,
+            BankServiceImplementation::class
+        );
+        $this->app->bind(
+            ApplicantBankDataServiceInterface::class,
+            ApplicantBankDataServiceImplementation::class
+        );
+        $this->app->bind(
+            ApplicantRefereeDataServiceInterface::class,
+            ApplicantRefereeDataServiceImplementation::class
         );
     }
 

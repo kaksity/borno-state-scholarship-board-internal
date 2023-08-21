@@ -17,6 +17,8 @@ class QualificationTypeSeeder extends Seeder
         $qualificationTypes = [
             ['name' => 'Primary School Leaving Certificate'],
             ['name' => 'Secondary School Certificate Examinations'],
+            ['name' => 'Diploma'],
+            ['name' => 'Higher National Diploma'],
             ['name' => 'Bachelors Degree'],
             ['name' => 'Masters'],
             ['name' => 'Doctorate'],

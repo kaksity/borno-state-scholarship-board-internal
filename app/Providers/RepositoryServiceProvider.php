@@ -3,12 +3,15 @@
 namespace App\Providers;
 
 use App\Repositories\Implementations\AdminRepositoryImplementation;
+use App\Repositories\Implementations\ApplicantBankDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantBioDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantPaymentDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantQualificationDataRepositoryImplementation;
+use App\Repositories\Implementations\ApplicantRefereeDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantSchoolDataRepositoryImplementation;
 use App\Repositories\Implementations\ApplicantUploadedDocumentDataRepositoryImplementation;
+use App\Repositories\Implementations\BankRepositoryImplementation;
 use App\Repositories\Implementations\CountryRepositoryImplementation;
 use App\Repositories\Implementations\DocumentTypeRepositoryImplementation;
 use App\Repositories\Implementations\LgaRepositoryImplementation;
@@ -16,12 +19,15 @@ use App\Repositories\Implementations\QualificationTypeRepositoryImplementation;
 use App\Repositories\Implementations\RemitaServiceTypeRepositoryImplementation;
 use App\Repositories\Implementations\SchoolRepositoryImplementation;
 use App\Repositories\Interfaces\AdminRepositoryInterface;
+use App\Repositories\Interfaces\ApplicantBankDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantBioDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantPaymentDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantQualificationDataRepositoryInterface;
+use App\Repositories\Interfaces\ApplicantRefereeDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantSchoolDataRepositoryInterface;
 use App\Repositories\Interfaces\ApplicantUploadedDocumentDataRepositoryInterface;
+use App\Repositories\Interfaces\BankRepositoryInterface;
 use App\Repositories\Interfaces\CountryRepositoryInterface;
 use App\Repositories\Interfaces\DocumentTypeRepositoryInterface;
 use App\Repositories\Interfaces\LgaRepositoryInterface;
@@ -97,6 +103,18 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             RemitaServiceTypeRepositoryInterface::class,
             RemitaServiceTypeRepositoryImplementation::class
+        );
+        $this->app->bind(
+            BankRepositoryInterface::class,
+            BankRepositoryImplementation::class
+        );
+        $this->app->bind(
+            ApplicantBankDataRepositoryInterface::class,
+            ApplicantBankDataRepositoryImplementation::class
+        );
+        $this->app->bind(
+            ApplicantRefereeDataRepositoryInterface::class,
+            ApplicantRefereeDataRepositoryImplementation::class
         );
     }
 

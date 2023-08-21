@@ -4,17 +4,32 @@
     <ul class="nav nav-pills nav-fill mb-3">
         <li class="nav-item">
             <a href="{{ route('applicant.applicant-bio-data.index') }}" class="nav-link">
-                Personal-Data
+                Personal Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('applicant.applicant-school-data.index') }}" class="nav-link">
+                Academic Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('applicant.applicant-bank-data.index')}}" class="nav-link">
+                Bank Data
             </a>
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualifications
+                Qualification Data
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="nav-link">
-                Document Uploads
+                Document Upload Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('applicant.applicant-referee-data.index') }}" class="nav-link">
+                Referee Data
             </a>
         </li>
         <li class="nav-item">
@@ -28,7 +43,7 @@
             <form action="{{ route('applicant.applicant-bio-data.store') }}" method="POST">
                 @csrf
                 <div class="form-group row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Surname</label>
                         <div>
                             <input type="text" class="form-control" disabled name="surname"
@@ -40,7 +55,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Other Names</label>
                         <div>
                             <input type="text" class="form-control" disabled name="other_names"
@@ -52,9 +67,21 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">Guardian Full Name</label>
+                        <div>
+                            <input type="text" class="form-control" name="guardian_full_name"
+                                value="{{ $applicant->applicantBioData->guardian_full_name }}" placeholder="Other Names">
+                            @error('guardian_full_name')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="phone" class="col-form-label">Phone Number*</label>
                         <div>
                             <input type="text" class="form-control" name="phone_number"
@@ -67,7 +94,22 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label for="nin" class="col-form-label">Gender</label>
+                        <div>
+                            <select name="gender" class="form-control">
+                                <option value="">Select a Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            @error('gender')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">NIN*</label>
                         <div>
                             <input type="text" class="form-control"
@@ -80,7 +122,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">Date of Birth</label>
                         <div>
                             <input type="text" class="form-control" placeholder="Date of Birth (YYYY-MM-DD)"
@@ -94,7 +136,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Contact Address</label>
                         <div>
                             <input type="text" class="form-control" placeholder="Contact Address"
@@ -106,7 +148,19 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">Place of Birth</label>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Place of Birth"
+                                value="{{ $applicant->applicantBioData->place_of_birth ?? old('place_of_birth') }}" name="place_of_birth">
+                            @error('place_of_birth')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Local Government Area</label>
                         <div>
                             <select class="js-example-basic-single form-control" name="lga_id">
@@ -128,96 +182,6 @@
                         </div>
                     </div>
                 </div>
-                @if(auth('applicant')->user()->programme !== 'Undergraduate')
-                <div class="form-group row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label class="col-form-label">Country of Studies</label>
-                        <div>
-                            <select class="js-example-basic-single form-control" name="country_id" id="countrySelectOptions">
-                                <option value="">Select Country</option>
-                                @foreach ($countries as $country)
-                                <option value="{{ $country->id }}"
-                                    @if($applicant->applicantSchoolData->country_id === $country->id) selected @endif
-                                    @if (old('country_id') == $country->id) selected @endif
-                                >
-                                    {{ $country->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('country_id')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                @endif
-                <div class="form-group row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <label for="phone" class="col-form-label">Course of Study</label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Course of Study"
-                                value="{{ $applicant->applicantSchoolData->course_of_study ?? old('course_of_study') }}" name="course_of_study">
-                            @error('course_of_study')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <label for="nin" class="col-form-label">Name of Institution</label>
-                        @if(auth('applicant')->user()->programme === 'Undergraduate')
-                        <div>
-                            <input type="text" class="form-control" placeholder="Name of Institution"
-                                value="{{ $applicant->applicantSchoolData->name_of_institution ?? old('name_of_institution') }}" name="name_of_institution">
-                            @error('name_of_institution')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        @else
-                        <div>
-                            <select class="js-example-basic-single form-control" id="nameOfInstitutionSelect" name="name_of_institution">
-                                <option value="">Select School Names</option>
-                            </select>
-                            @error('name_of_institution')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <label for="nin" class="col-form-label">Admission Status</label>
-                        <div>
-                            <select class="js-example-basic-single form-control" name="admission_status">
-                                <option value="">Select Admission Status</option>
-                                <option value="Admitted"
-                                    @if($applicant->applicantSchoolData->admission_status == 'Admitted') selected @endif
-                                    @if(old('admission_status') == 'Admitted') selected @endif
-                                >
-                                    Admitted
-                                </option>
-                                <option value="Awaiting"
-                                    @if($applicant->applicantSchoolData->admission_status == 'Awaiting') selected @endif
-                                    @if(old('admission_status') == 'Awaiting') selected @endif
-                                >
-                                    Awaiting Admission
-                                </option>
-                            </select>
-                            @error('admission_status')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                
                 <div>
                     {{-- @if (auth('applicant')->user()->status === 'Applying') --}}
                         <button type="submit" class="btn btn-primary">Save & Continue</button>
@@ -229,35 +193,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('custom_scripts')
-    <script>
-        $(() => {
-            $('#countrySelectOptions').change(e => {
-                const selectedCountry = $("#countrySelectOptions option:selected").val();
-                getSchools(selectedCountry)
-            })
-        })
-
-        function getSchools(countryId) {
-            $.ajax({
-                url: `/api/schools?country_id=${countryId}`,
-                method: 'get',
-                success: function(data) {
-                    let html = ``
-                    
-                    data.forEach(element => {
-                        html = `${html}
-                                <option value="${element.school_name}"
-                                >
-                                    ${element.school_name}
-                                </option>`
-                    });
-                    
-                    $('#nameOfInstitutionSelect').html(html)
-                }
-            })
-        }
-    </script>
 @endsection

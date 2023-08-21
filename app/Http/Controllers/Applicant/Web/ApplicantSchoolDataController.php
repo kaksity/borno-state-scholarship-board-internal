@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Applicant\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Applicant\Web\BioData\UpdateApplicantBioDataRequest;
-use App\Services\Interfaces\ApplicantBioDataServiceInterface;
+use App\Http\Requests\Applicant\Web\SchoolData\UpdateApplicantSchoolDataRequest;
 use App\Services\Interfaces\ApplicantSchoolDataServiceInterface;
 use App\Services\Interfaces\ApplicantServiceInterface;
 use App\Services\Interfaces\CountryServiceInterface;
 use App\Services\Interfaces\LgaServiceInterface;
 use App\Services\Interfaces\SchoolServiceInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ApplicantBioDataController extends Controller
+class ApplicantSchoolDataController extends Controller
 {
     public function __construct(
         private LgaServiceInterface $lgaServiceInterface,
         private CountryServiceInterface $countryServiceInterface,
         private ApplicantServiceInterface $applicantServiceInterface,
-        private ApplicantBioDataServiceInterface $applicantBioDataServiceInterface,
         private ApplicantSchoolDataServiceInterface $applicantSchoolDataServiceInterface,
         private SchoolServiceInterface $schoolServiceInterface,
     )
@@ -37,7 +37,7 @@ class ApplicantBioDataController extends Controller
         $applicant = $this->applicantServiceInterface->getApplicantByEmailAddress(
             auth('applicant')->user()->email,
             [
-                'applicantBioData',
+                'applicantSchoolData',
                 'applicantSchoolData'
             ]
         );
@@ -49,7 +49,7 @@ class ApplicantBioDataController extends Controller
             'schools' => $schools
         ];
 
-        return view('web.applicant.bio-data')->with($data);
+        return view('web.applicant.school-data')->with($data);
     }
 
     /**
@@ -58,21 +58,20 @@ class ApplicantBioDataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateApplicantBioDataRequest $request)
+    public function store(UpdateApplicantSchoolDataRequest $request)
     {
         $applicant = $this->applicantServiceInterface->getApplicantByEmailAddress(
             auth('applicant')->user()->email,
             [
-                'applicantBioData',
                 'applicantSchoolData'
             ]
         );
 
-        $this->applicantBioDataServiceInterface->updateApplicantBioDataRecord(
+        $this->applicantSchoolDataServiceInterface->updateApplicantSchoolDataRecord(
             $request->validated(),
-            $applicant->applicantBioData->id
+            $applicant->applicantSchoolData->id
         );
-
+        
         return redirect()->route('applicant.applicant-qualification-data.index');
     }
 }

@@ -45,34 +45,43 @@
                 {{ session('status') }}
             </div>
             @endif
-            <form action="{{ route('applicant.applicant-uploaded-document-data.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('applicant.applicant-referee-data.store') }}" method="POST">
                 @csrf
                 <div class="form-group row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">Documents Obtained</label>
+                        <label for="name" class="form-label">Full Name</label>
                         <div>
-                            <select class="js-example-basic-single form-control" name="document_type_id">
-                                <option value="">Select Document</option>
-                                @foreach ($documentTypes as $documentType)
-                                <option value="{{ $documentType->id }}" @if (old('document_type_id') === $documentType->id) selected @endif
-                                >
-                                    {{ $documentType->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('document_type_id')
+                            <input type="text" class="form-control" name="full_name"
+                                value="{{ old('full_name') }}" placeholder="Full Name">
+                            @error('full_name')
                             <div class="p-1 text-danger">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                     </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">Document</label>
+                        <label for="name" class="form-label">Occupation</label>
                         <div>
-                            <input type="file" class="form-control" name="file"
-                                value="{{ old('file') }}" placeholder="Document">
-                            @error('file')
+                            <input type="text" class="form-control" name="occupation"
+                                value="{{ old('occupation') }}" placeholder="Occupation">
+                            @error('occupation')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">Phone Number</label>
+                        <div>
+                            <input type="text" class="form-control" name="phone_number"
+                                value="{{ old('phone_number') }}" placeholder="Phone Number">
+                            @error('phone_number')
                             <div class="p-1 text-danger">
                                 {{ $message }}
                             </div>
@@ -93,21 +102,22 @@
                 <table id="basic-btn" class="table mb-0">
                     <thead class="thead-light">
                         <tr>
-                            <th>Uploaded Document</th>
+                            <th>Full Name</th>
+                            <th>Occupation</th>
+                            <th>Phone Number</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($applicantUploadDocuments as $applicantUploadDocument)
+                        @foreach ($applicantReferees as $applicantReferee)
                             <tr>
-                                <td>{{ $applicantUploadDocument->documentType->name }}</td>
+                                <td>{{ $applicantReferee->full_name }}</td>
+                                <td>{{ $applicantReferee->occupation }}</td>
+                                <td>{{ $applicantReferee->phone_number }}</td>
                                 <td>
-                                    <form action="{{ route('applicant.applicant-uploaded-document-data.destroy', [$applicantUploadDocument->id]) }}" method="POST">
+                                    <form action="{{ route('applicant.applicant-referee-data.destroy', [$applicantReferee->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{str_replace('public', '/storage', $applicantUploadDocument->file_path)}}"class="btn btn-secondary">
-                                            View
-                                        </a>
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
@@ -117,8 +127,8 @@
                 </table>
             </div>
             <div class="mt-2">
-                <a href="{{ route('applicant.applicant-qualification-data.index') }}" class="btn btn-secondary">Go Back</a>
-                <a href="{{ route('applicant.applicant-preview-data.index') }}" class="btn btn-primary">Continue</a>
+                <a href="{{ route('applicant.applicant-bio-data.index') }}" class="btn btn-secondary">Go Back</a>
+                <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="btn btn-primary">Continue</a>
             </div>
         </div>
     </div>

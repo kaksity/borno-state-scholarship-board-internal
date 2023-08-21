@@ -73,8 +73,18 @@
                 <option value="">Select Programme</option>
                 <option value="Undergraduate" @if (old('programme')=='Undergraduate' ) selected @endif>
                     Undergraduate (French/Chinese language)</option>
-                <option value="Masters" @if (old('programme')=='Masters' ) selected @endif>Msc</option>
-                <option value="Doctorate" @if (old('programme')=='Doctorate' ) selected @endif>Phd</option>
+                <option value="Diploma" @if (old('programme')=='Diploma' ) selected @endif>
+                    Diploma
+                </option>
+                <option value="NCE" @if (old('programme')=='Diploma' ) selected @endif>
+                    National Certificate Examination
+                </option>
+                <option value="HND" @if (old('programme')=='HND' ) selected @endif>
+                    Higher National Diploma
+                </option>
+                <option value="Nursing" @if (old('programme')=='Nursing' ) selected @endif>
+                    College of Nursing
+                </option>
             </select>
             @error('programme')
             <div class="p-1 text-danger">

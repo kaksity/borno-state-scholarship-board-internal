@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Applicant\Web\ApplicantBankDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Applicant\Web\ApplicantBioDataController;
 use App\Http\Controllers\Applicant\Web\ApplicantPaymentDataController;
 use App\Http\Controllers\Applicant\Web\ApplicantPreviewDataController;
 use App\Http\Controllers\Applicant\Web\ApplicantQualificationDataController;
+use App\Http\Controllers\Applicant\Web\ApplicantRefereeDataController;
 use App\Http\Controllers\Applicant\Web\ApplicantSchoolDataController;
 use App\Http\Controllers\Applicant\Web\ApplicantUploadedDocumentDataController;
 use App\Http\Controllers\Applicant\Web\Authentication\ChangePasswordController;
@@ -48,11 +50,26 @@ Route::group([], function () {
         ])->middleware('auth:applicant');
     });
     Route::group(['middleware' => ['auth:applicant']], function () {
-        Route::group(['middleware' => ['verify.payment.status']], function () {
+        // Route::group(['middleware' => ['verify.payment.status']], function () {
             Route::resource('/bio-data', ApplicantBioDataController::class, [
                 'names' => [
                     'index' => 'applicant.applicant-bio-data.index',
                     'store' => 'applicant.applicant-bio-data.store',
+                ]
+            ]);
+
+            Route::resource('/school-data', ApplicantSchoolDataController::class, [
+                'names' => [
+                    'index' => 'applicant.applicant-school-data.index',
+                    'store' => 'applicant.applicant-school-data.store',
+                ]
+            ]);
+
+            Route::resource('/referee-data', ApplicantRefereeDataController::class, [
+                'names' => [
+                    'index' => 'applicant.applicant-referee-data.index',
+                    'store' => 'applicant.applicant-referee-data.store',
+                    'destroy' => 'applicant.applicant-referee-data.destroy',
                 ]
             ]);
 
@@ -61,6 +78,14 @@ Route::group([], function () {
                     'index' => 'applicant.applicant-qualification-data.index',
                     'store' => 'applicant.applicant-qualification-data.store',
                     'destroy' => 'applicant.applicant-qualification-data.destroy',
+                ]
+            ]);
+
+            Route::resource('/bank-data', ApplicantBankDataController::class, [
+                'names' => [
+                    'index' => 'applicant.applicant-bank-data.index',
+                    'store' => 'applicant.applicant-bank-data.store',
+                    'destroy' => 'applicant.applicant-bank-data.destroy',
                 ]
             ]);
 
@@ -78,7 +103,7 @@ Route::group([], function () {
                     'destroy' => 'applicant.applicant-preview-data.destroy',
                 ]
             ]);
-        });
+        // });
 
         Route::resource('payment-data', ApplicantPaymentDataController::class, [
             'names' => [

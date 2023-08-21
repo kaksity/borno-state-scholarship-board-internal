@@ -4,17 +4,32 @@
     <ul class="nav nav-pills nav-fill mb-3">
         <li class="nav-item">
             <a href="{{ route('applicant.applicant-bio-data.index') }}" class="nav-link">
-                Personal-Data
+                Personal Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('applicant.applicant-school-data.index') }}" class="nav-link">
+                Academic Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('applicant.applicant-bank-data.index')}}" class="nav-link">
+                Bank Data
             </a>
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualifications
+                Qualification Data
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="nav-link">
-                Document Uploads
+                Document Upload Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('applicant.applicant-referee-data.index') }}" class="nav-link">
+                Referee Data
             </a>
         </li>
         <li class="nav-item">

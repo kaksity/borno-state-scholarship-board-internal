@@ -13,30 +13,19 @@ class UpdateApplicantBioDataRequest extends FormRequest
      */
     public function rules(): array
     {
-        $loggedInApplicant = auth('applicant')->user();
-
-        $rules = [
+        return [
             'phone_number' => ['required', 'digits:11'],
             'nin' => ['nullable', 'digits:11'],
             'date_of_birth' => ['required', 'date', 'date_format:Y-m-d'],
             'contact_address' => ['required', 'between:3,200'],
             'lga_id' => ['required', 'integer'],
-            'course_of_study' => ['required', 'between:3,200'],
-            'name_of_institution' => ['required', 'between:3,200'],
-            'admission_status' => ['required', 'in:Admitted,Awaiting'],
+            'guardian_full_name' => ['required', 'between:3,200'],
+            'place_of_birth' => ['required', 'between:3,200'],
+            'gender' => ['required', 'in:Male,Female'],
         ];
-
-        if($loggedInApplicant->programme === 'Masters') {
-            $rules += [
-                'country_id' => ['required', 'integer'],
-            ];
-        }
-        
-
-        return $rules;
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'phone_number.required' => 'Phone Number is required',
@@ -49,12 +38,12 @@ class UpdateApplicantBioDataRequest extends FormRequest
             'lga_id.integer' => 'Local Government Area must be an integer',
             'contact_address.required' => 'Contact Address is required',
             'contact_address.between' => 'Contact Address must be 3 to 200 characters',
-            'name_of_institution.required' => 'Name of Institution is required',
-            'name_of_institution.between' => 'Name of Institution must be 3 to 200 characters',
-            'course_of_study.required' => 'Course of Study is required',
-            'course_of_study.between' => 'Course of Study must be 3 to 200 characters',
-            'admission_status.required' => 'Course of study is required',
-            'admission_status.between' => 'Course of study must be 3 to 200 characters',
+            'place_of_birth.required' => 'Place of birth is required',
+            'place_of_birth.between' => 'Place of birth must be 3 to 200 characters',
+            'guardian_full_name.required' => 'Guardian Name is required',
+            'guardian_full_name.between' => 'Guardian Name must be 3 to 200 characters',
+            'gender.required' => 'Gender is required',
+            'gender.between' => 'Gender must be 3 to 200 characters',
             'country_id.required' => 'Country is required',
             'country_id.integer' => 'Country must be an integer',
         ];
