@@ -59,8 +59,8 @@
 
                                     <form action="{{ route('applicant.logout.store') }}" method="POST">
                                         @csrf
-                                        {{-- <li class="nav-link"><a href="{{ route('applicant.change-password.index') }}">Change
-                                                Password</a></li> --}}
+                                        <li class="nav-link"><a href="{{ route('applicant.change-password.index') }}">Change
+                                                Password</a></li>
                                         <button type="submit" class="btn btn-sm"><i class="fas fa-sign-out-alt"></i>
                                             Logout</button>
                                     </form>

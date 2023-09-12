@@ -46,8 +46,10 @@ Route::group([], function () {
         ]);
 
         Route::resource('/change-password', ChangePasswordController::class, [
-            'index' => 'applicant.change-password.index',
-            'store' => 'applicant.change-password.store'
+            'names' => [
+                'index' => 'applicant.change-password.index',
+                'store' => 'applicant.change-password.store'
+            ]
         ])->middleware('auth:applicant');
     });
     Route::group(['middleware' => ['auth:applicant']], function () {
