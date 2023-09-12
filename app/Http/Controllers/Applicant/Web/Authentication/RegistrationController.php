@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Applicant\Web\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Applicant\Web\Authentication\RegistrationRequest;
+use App\Mail\AccountVerificationMail;
+use App\Models\ApplicantVerification;
 use App\Services\Interfaces\ApplicantServiceInterface;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -50,6 +53,22 @@ class RegistrationController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ]);
+
+        $loggedInApplicant = auth('applicant')->user();
+
+        $token = Str::random(200);
+
+        ApplicantVerification::create([
+            'applicant_id' => $loggedInApplicant->id,
+            'expires_at' => Carbon::now()->addMinutes(30),
+            'token' => $token
+        ]);
+
+        Mail::to($loggedInApplicant)->later(now()->addSeconds(5), new AccountVerificationMail([
+            'surname' => $loggedInApplicant->surname,
+            'other_names' => $loggedInApplicant->other_names,
+            'token' => $token
+        ]));
 
         return redirect()->route('applicant.applicant-bio-data.index');
     }

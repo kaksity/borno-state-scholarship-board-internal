@@ -25,9 +25,9 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active show" id="progress-t-tab1">
-            @if (session()->has('status'))
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                {{ session('status') }}
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                {{ session('success') }}
             </div>
             @endif
             @if (is_null($remitaPaymentInformation))
