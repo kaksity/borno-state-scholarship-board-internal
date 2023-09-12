@@ -54,7 +54,7 @@
                             <select class="js-example-basic-single form-control" name="bank_id">
                                 <option value="">Select Bank</option>
                                 @foreach ($banks as $bank)
-                                <option value="{{ $bank->id }}" @if (old('bank_id') === $bank->id) selected @endif
+                                <option value="{{ $bank->id }}" @if (old('bank_id') == $bank->id) selected @endif
                                 >
                                     {{ $bank->name }}
                                 </option>
@@ -135,8 +135,8 @@
                 </table>
             </div>
             <div class="mt-2">
-                <a href="{{ route('applicant.applicant-bio-data.index') }}" class="btn btn-secondary">Go Back</a>
-                <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="btn btn-primary">Continue</a>
+                <a href="{{ route('applicant.applicant-school-data.index') }}" class="btn btn-secondary">Go Back</a>
+                <a href="{{ route('applicant.applicant-qualification-data.index') }}" class="btn btn-primary">Continue</a>
             </div>
         </div>
     </div>

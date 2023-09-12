@@ -66,7 +66,9 @@
                             <select class="js-example-basic-single form-control" name="qualification_type_id">
                                 <option value="">Select Qualification Obtained</option>
                                 @foreach ($qualificationTypes as $qualificationType)
-                                <option value="{{ $qualificationType->id }}" @if (old('qualification_type_id') === $qualificationType->id) selected @endif
+                                <option
+                                    value="{{ $qualificationType->id }}"
+                                    @if (old('qualification_type_id') == $qualificationType->id) selected @endif
                                 >
                                     {{ $qualificationType->name }}
                                 </option>
@@ -147,7 +149,7 @@
                 </table>
             </div>
             <div class="mt-2">
-                <a href="{{ route('applicant.applicant-bio-data.index') }}" class="btn btn-secondary">Go Back</a>
+                <a href="{{ route('applicant.applicant-bank-data.index') }}" class="btn btn-secondary">Go Back</a>
                 <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="btn btn-primary">Continue</a>
             </div>
         </div>

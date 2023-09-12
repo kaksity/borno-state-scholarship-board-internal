@@ -3,23 +3,13 @@
 namespace App\Http\Controllers\Applicant\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Applicant\Web\BioData\UpdateApplicantBioDataRequest;
-use App\Services\Interfaces\ApplicantBioDataServiceInterface;
-use App\Services\Interfaces\ApplicantSchoolDataServiceInterface;
 use App\Services\Interfaces\ApplicantServiceInterface;
-use App\Services\Interfaces\CountryServiceInterface;
-use App\Services\Interfaces\LgaServiceInterface;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ApplicantPreviewDataController extends Controller
 {
     public function __construct(
-        private LgaServiceInterface $lgaServiceInterface,
-        private CountryServiceInterface $countryServiceInterface,
         private ApplicantServiceInterface $applicantServiceInterface,
-        private ApplicantBioDataServiceInterface $applicantBioDataServiceInterface,
-        private ApplicantSchoolDataServiceInterface $applicantSchoolDataServiceInterface,
     )
     {
     }
@@ -65,8 +55,11 @@ class ApplicantPreviewDataController extends Controller
         
         $loggedInApplicant = auth('applicant')->user();
         
+        $trackingCode = strtoupper(Str::random(10));
+        
         $this->applicantServiceInterface->updateApplicantRecord([
-            'status' => 'Submitted'
+            'status' => 'Submitted',
+            'tracking_code' => $trackingCode
         ], $loggedInApplicant->id);
         
         return back()->with('status', 'Application for Scholarship has been submitted successfully');

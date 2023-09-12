@@ -72,6 +72,6 @@ class ApplicantSchoolDataController extends Controller
             $applicant->applicantSchoolData->id
         );
         
-        return redirect()->route('applicant.applicant-qualification-data.index');
+        return redirect()->route('applicant.applicant-bank-data.index');
     }
 }

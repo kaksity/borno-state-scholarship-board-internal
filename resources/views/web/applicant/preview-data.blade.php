@@ -49,30 +49,40 @@
                 @csrf
                 <h4>Personal Information</h4>
                 <div class="form-group row">
-                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">
-                            <b>Surname</b>
-                        </label>
-                        <div>
-                            {{ $applicant->surname }}
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div>
+                                
+                                <img src="{{
+                                    $applicant->applicantBioData?->passport_path != null
+                                        ? str_replace('public', '/storage', $applicant->applicantBioData?->passport_path)
+                                        : '/assets/images/placeholder/user-place-holder.jpg'
+                                }}" alt="" style="height:9rem;width:9rem;object-fit:cover;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">
-                            <b>Other Names</b>
-                        </label>
-                        <div>
-                            {{ $applicant->other_names }}
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label for="name" class="form-label">
+                                <b>Surname</b>
+                            </label>
+                            <div>
+                                {{ $applicant->surname }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">
-                            <b>Guardian Full Name</b>
-                        </label>
-                        <div>
-                            {{ $applicant->applicantBioData?->guardian_full_name }}
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label for="name" class="form-label">
+                                <b>Other Names</b>
+                            </label>
+                            <div>
+                                {{ $applicant->other_names }}
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label for="name" class="form-label">
+                                <b>Guardian Full Name</b>
+                            </label>
+                            <div>
+                                {{ $applicant->applicantBioData?->guardian_full_name }}
+                            </div>
+                        </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -290,7 +300,8 @@
                     @if ($applicant->status === 'Applying')
                         <button type="submit" class="btn btn-primary">Submit Application</button>
                     @else
-                        <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
+                            <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
+                            <a href="{{ route('applicant.generate-submit-application-pdf') }}" class="btn btn-secondary">Generate PDF</a>
                     @endif
                 </div>
             </form>

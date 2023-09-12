@@ -68,11 +68,24 @@ class ApplicantBioDataController extends Controller
             ]
         );
 
+        $updateApplicantBioDataRecordOptions = $request->safe()->except('passport');
+
+        if ($request->passport) {
+            $extension = $request->passport->getClientOriginalExtension();
+            $fileNameToStore = time().uniqid().'.'.$extension;
+            
+            $path = $request->passport->storeAs('public/passports', $fileNameToStore);
+
+            $updateApplicantBioDataRecordOptions =  array_merge($updateApplicantBioDataRecordOptions, [
+                'passport_path' => $path
+            ]);
+        }
+
         $this->applicantBioDataServiceInterface->updateApplicantBioDataRecord(
-            $request->validated(),
+            $updateApplicantBioDataRecordOptions,
             $applicant->applicantBioData->id
         );
 
-        return redirect()->route('applicant.applicant-qualification-data.index');
+        return redirect()->route('applicant.applicant-school-data.index');
     }
 }

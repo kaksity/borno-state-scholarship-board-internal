@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Applicant\Web\BioData;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateApplicantBioDataRequest extends FormRequest
@@ -15,13 +15,15 @@ class UpdateApplicantBioDataRequest extends FormRequest
     {
         return [
             'phone_number' => ['required', 'digits:11'],
-            'nin' => ['nullable', 'digits:11'],
+            'nin' => ['nullable', 'digits:11', Rule::unique('applicant_bio_data', 'nin')->ignore($this->user()->id, 'applicant_id')],
             'date_of_birth' => ['required', 'date', 'date_format:Y-m-d'],
             'contact_address' => ['required', 'between:3,200'],
             'lga_id' => ['required', 'integer'],
             'guardian_full_name' => ['required', 'between:3,200'],
             'place_of_birth' => ['required', 'between:3,200'],
             'gender' => ['required', 'in:Male,Female'],
+            // 'passport' => ['required', 'file', 'max:1024', 'image'],
+            'passport' => ['nullable', 'file', 'max:1024', 'image'],
         ];
     }
 
@@ -31,6 +33,7 @@ class UpdateApplicantBioDataRequest extends FormRequest
             'phone_number.required' => 'Phone Number is required',
             'phone_number.digits' => 'Phone Number must be 11 digits',
             'nin.digits' => 'NIN must be 11 digits',
+            'nin.unique' => 'NIN has already been used',
             'date_of_birth.required' => 'Date of Birth is required',
             'date_of_birth.date' => 'Date of Birth must be a date',
             'date_of_birth.date_format' => 'Date of Birth Format is not valid',
@@ -46,6 +49,10 @@ class UpdateApplicantBioDataRequest extends FormRequest
             'gender.between' => 'Gender must be 3 to 200 characters',
             'country_id.required' => 'Country is required',
             'country_id.integer' => 'Country must be an integer',
+            'passport.required' => 'Passport File is required',
+            'passport.file' => 'Passport File must be a file',
+            'passport.max' => 'Passport File must not exceed 1mb',
+            'passport.image' => 'Passport File must be an image',
         ];
     }
 }

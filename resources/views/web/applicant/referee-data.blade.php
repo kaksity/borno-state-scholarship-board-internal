@@ -127,8 +127,8 @@
                 </table>
             </div>
             <div class="mt-2">
-                <a href="{{ route('applicant.applicant-bio-data.index') }}" class="btn btn-secondary">Go Back</a>
-                <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="btn btn-primary">Continue</a>
+                <a href="{{ route('applicant.applicant-uploaded-document-data.index') }}" class="btn btn-secondary">Go Back</a>
+                <a href="{{ route('applicant.applicant-preview-data.index') }}" class="btn btn-primary">Continue</a>
             </div>
         </div>
     </div>

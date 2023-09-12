@@ -40,7 +40,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active show" id="progress-t-tab1">
-            <form action="{{ route('applicant.applicant-bio-data.store') }}" method="POST">
+            <form action="{{ route('applicant.applicant-bio-data.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
@@ -71,7 +71,7 @@
                         <label for="name" class="form-label">Guardian Full Name</label>
                         <div>
                             <input type="text" class="form-control" name="guardian_full_name"
-                                value="{{ $applicant->applicantBioData->guardian_full_name }}" placeholder="Other Names">
+                                value="{{ $applicant->applicantBioData->guardian_full_name ?? old('guardian_full_name')}}" placeholder="Other Names">
                             @error('guardian_full_name')
                             <div class="p-1 text-danger">
                                 {{ $message }}
@@ -99,8 +99,28 @@
                         <div>
                             <select name="gender" class="form-control">
                                 <option value="">Select a Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option
+                                    value="Male"
+                                    @if($applicant->applicantBioData->gender === 'Male')
+                                        selected
+                                    @endif
+                                    @if(old('gender') == 'Male')
+                                        selected
+                                    @endif
+                                >
+                                    Male
+                                </option>
+                                <option
+                                    value="Male"
+                                    @if($applicant->applicantBioData->gender === 'Female')
+                                        selected
+                                    @endif
+                                    @if(old('gender') == 'Female')
+                                        selected
+                                    @endif
+                                >
+                                    Female
+                                </option>
                             </select>
                             @error('gender')
                             <div class="p-1 text-danger">
@@ -175,6 +195,20 @@
                                 @endforeach
                             </select>
                             @error('lga_id')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">Passport File</label>
+                        <div>
+                            <input type="file" class="form-control" name="passport"
+                                value="{{ old('passport') }}" placeholder="Passport">
+                            @error('passport')
                             <div class="p-1 text-danger">
                                 {{ $message }}
                             </div>
