@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('applicant_id')->index();
             $table->dateTime('expires_at');
+            $table->string('purpose')->default('account-verification');
             $table->string('token');
             $table->softDeletes();
             $table->timestamps();

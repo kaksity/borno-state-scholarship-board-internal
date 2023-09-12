@@ -43,13 +43,15 @@ class ApplicantVerificationController extends Controller
         $loggedInApplicant = auth('applicant')->user();
         
         ApplicantVerification::where([
-            'applicant_id' => $loggedInApplicant->id
+            'applicant_id' => $loggedInApplicant->id,
+            'purpose' => 'account-verification'
         ])->delete();
         
         $token = Str::random(200);
 
         ApplicantVerification::create([
             'applicant_id' => $loggedInApplicant->id,
+            'purpose' => 'account-verification',
             'expires_at' => Carbon::now()->addMinutes(30),
             'token' => $token
         ]);
@@ -72,6 +74,7 @@ class ApplicantVerificationController extends Controller
 
         $applicantVerification = ApplicantVerification::where([
             'token' => $id,
+            'purpose' => 'account-verification',
             'applicant_id' => $loggedInApplicant->id
         ])->first();
 
