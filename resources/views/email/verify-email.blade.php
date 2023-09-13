@@ -490,7 +490,7 @@
                                                             role="presentation">
                                                             <tr>
                                                                 <td align="center">
-                                                                    <a href="{{ route('applicant.applicant-verification.show', [$token]) }}" class="f-fallback button button--green"
+                                                                    <a href="{{ env('APP_URL').'/applicant/verification/'.$token }}" class="f-fallback button button--green"
                                                                         target="_blank">Click Me</a>
                                                                 </td>
                                                             </tr>
@@ -498,6 +498,9 @@
                                                     </td>
                                                 </tr>
                                             </table>
+                                            <p>
+                                                You can also optionally copy the link below and then paste it your browser. {{ env('APP_URL').'/applicant/verification/'.$token }}
+                                            </p>
                                             <p>For security, this request was received from an {{$IPAddress}}
                                                 device using {{ $device }}. If you did not request an account verification,
                                                 please ignore this email</p>
