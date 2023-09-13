@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualification Data
+                Institution Attended
             </a>
         </li>
         <li class="nav-item">

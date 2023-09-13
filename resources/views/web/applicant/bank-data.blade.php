@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualification Data
+                Institution Attended
             </a>
         </li>
         <li class="nav-item">
@@ -98,7 +98,13 @@
                 </div>
                 <div class="mb-2">
                     {{-- @if (auth('applicant')->user()->status === 'Applying') --}}
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        @if (count($applicantBanks) == 0)
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        @else
+                            <button type="button" class="btn btn-primary" disabled>
+                                Bank Record Has Already Been Added
+                            </button>
+                        @endif
                     {{-- @else
                         <button type="button" class="btn btn-primary" disabled>Application already been submitted</button>
                     @endif --}}

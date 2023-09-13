@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualification Data
+                Institution Attended
             </a>
         </li>
         <li class="nav-item">
@@ -103,12 +103,22 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">
+                            <b>Bank Verification Number(BVN)</b>
+                        </label>
+                        <div>
+                            {{ $applicant->applicantBioData?->bvn }}
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label for="nin" class="col-form-label">
                             <b>National Identity Number(NIN)</b>
                         </label>
                         <div>
                             {{ $applicant->applicantBioData?->nin }}
                         </div>
                     </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">
                             <b>Date of Birth</b>
@@ -117,17 +127,7 @@
                             {{ $applicant->applicantBioData?->date_of_birth }}
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">
-                            <b>Contact Address</b>
-                        </label>
-                        <div>
-                            {{ $applicant->applicantBioData?->contact_address }}
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">
                             <b>Place of Birth</b>
                         </label>
@@ -135,7 +135,15 @@
                             {{ $applicant->applicantBioData?->place_of_birth }}
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">
+                            <b>Contact Address</b>
+                        </label>
+                        <div>
+                            {{ $applicant->applicantBioData?->contact_address }}
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">
                             <b>Local Government Area</b>
                         </label>
@@ -229,7 +237,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h4>Qualifications Obtained</h4>
+                <h4>Institutions Attended</h4>
                 <div class="table-responsive">
                     <table id="basic-btn" class="table mb-0">
                         <thead class="thead-light">

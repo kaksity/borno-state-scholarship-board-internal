@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualification Data
+                Institution Attended
             </a>
         </li>
         <li class="nav-item">
@@ -110,9 +110,64 @@
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <label for="phone" class="col-form-label">Current Level</label>
                         <div>
-                            <input type="text" class="form-control" name="current_level"
-                                value="{{ $applicant->applicantSchoolData->current_level ?? old('current_level') }}"
-                                placeholder="Phone Number">
+                            <select name="current_level" class="form-control">
+                                <option value="">Select the current level</option>
+                                <option
+                                    value="Part I"
+                                    @if ($applicant->applicantSchoolData->current_level == 'Part I')
+                                        selected
+                                    @endif
+                                    @if (old('current_level') == 'Part I')
+                                        selected
+                                    @endif
+                                >
+                                    Part I
+                                </option>
+                                <option
+                                    value="Part II DE"
+                                    @if ($applicant->applicantSchoolData->current_level == 'Part II DE')
+                                        selected
+                                    @endif
+                                    @if (old('current_level') == 'Part II DE')
+                                        selected
+                                    @endif
+                                >
+                                    Part II DE
+                                </option>
+                                <option
+                                    value="Diploma I"
+                                    @if ($applicant->applicantSchoolData->current_level == 'Diploma I')
+                                        selected
+                                    @endif
+                                    @if (old('current_level') == 'Diploma I')
+                                        selected
+                                    @endif
+                                >
+                                    Diploma Year I
+                                </option>
+                                <option
+                                    value="HND I"
+                                    @if ($applicant->applicantSchoolData->current_level == 'Part II DE')
+                                        selected
+                                    @endif
+                                    @if (old('current_level') == 'Part II DE')
+                                        selected
+                                    @endif
+                                >
+                                    Higher National Diploma Year I
+                                </option>
+                                <option
+                                    value="NCE I"
+                                    @if ($applicant->applicantSchoolData->current_level == 'NCE I')
+                                        selected
+                                    @endif
+                                    @if (old('current_level') == 'NCE I')
+                                        selected
+                                    @endif
+                                >
+                                    National Certification Examination Year I
+                                </option>
+                            </select>
                             @error('current_level')
                             <div class="p-1 text-danger">
                                 {{ $message }}

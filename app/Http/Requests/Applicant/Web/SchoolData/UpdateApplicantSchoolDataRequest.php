@@ -14,7 +14,7 @@ class UpdateApplicantSchoolDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'current_level' => ['required', 'integer'],
+            'current_level' => ['required', 'string'],
             'date_of_admission' => ['required', 'date', 'date_format:Y-m-d'],
             'date_of_graduation' => ['required', 'date', 'date_format:Y-m-d'],
             'identity_number' => ['required', 'between:3,200'],
@@ -27,7 +27,7 @@ class UpdateApplicantSchoolDataRequest extends FormRequest
     {
         return [
             'current_level.required' => 'Current Level is required',
-            'current_level.integer' => 'Current Level must be an integer',
+            'current_level.string' => 'Current Level must a string',
             'date_of_admission.required' => 'Date of Admission is required',
             'date_of_admission.date' => 'Date of Admission must be a date',
             'date_of_admission.date_format' => 'Date of Admission Format is not valid',

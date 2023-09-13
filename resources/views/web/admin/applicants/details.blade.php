@@ -92,7 +92,7 @@
             <div class="mt-4">
                 <div class="table-responsive">
                     <div>
-                        <h4>Qualifications Obtained</h4>
+                        <h4>Institutions Attended</h4>
                     </div>
                     <table id="basic-btn" class="table mb-0">
                         <thead class="thead-light">

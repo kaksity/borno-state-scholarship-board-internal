@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('applicant.applicant-qualification-data.index')}}" class="nav-link">
-                Qualification Data
+                Institution Attended
             </a>
         </li>
         <li class="nav-item">
@@ -130,6 +130,19 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label for="nin" class="col-form-label">Bank Verification Number(BVN)</label>
+                        <div>
+                            <input type="text" class="form-control"
+                                value="{{ $applicant->applicantBioData->bvn ?? old('bvn') }}" name="bvn"
+                                placeholder="Bank Verification Number(BVN)">
+                            @error('bvn')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">National Identity Number(NIN)</label>
                         <div>
                             <input type="text" class="form-control"
@@ -142,6 +155,8 @@
                             @enderror
                         </div>
                     </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="nin" class="col-form-label">Date of Birth</label>
                         <div>
@@ -154,21 +169,7 @@
                             @enderror
                         </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <label for="name" class="form-label">Contact Address</label>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Contact Address"
-                                value="{{ $applicant->applicantBioData->contact_address ?? old('contact_address') }}" name="contact_address">
-                            @error('contact_address')
-                            <div class="p-1 text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Place of Birth</label>
                         <div>
                             <input type="text" class="form-control" placeholder="Place of Birth"
@@ -180,7 +181,19 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label for="name" class="form-label">Contact Address</label>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Contact Address"
+                                value="{{ $applicant->applicantBioData->contact_address ?? old('contact_address') }}" name="contact_address">
+                            @error('contact_address')
+                            <div class="p-1 text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label for="name" class="form-label">Local Government Area</label>
                         <div>
                             <select class="js-example-basic-single form-control" name="lga_id">

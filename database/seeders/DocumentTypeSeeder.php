@@ -19,9 +19,10 @@ class DocumentTypeSeeder extends Seeder
             ['name' => 'Secondary School Certificate Examinations'],
             ['name' => 'Diploma'],
             ['name' => 'Higher National Diploma'],
-            ['name' => 'Bachelors Degree'],
-            ['name' => 'Masters'],
-            ['name' => 'Doctorate'],
+            ['name' => 'Admission Letter'],
+            ['name' => 'ID Card'],
+            ['name' => 'Payment Receipt'],
+            ['name' => 'Indigene Letter'],
         ];
 
         DB::transaction(function() use($documentTypes) {

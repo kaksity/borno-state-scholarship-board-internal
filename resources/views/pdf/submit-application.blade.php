@@ -172,22 +172,26 @@
                                             <div>{{ $applicant->applicantBioData?->phone_number }}</div>
                                         </td>
                                         <td>
-                                            <b>National Identity Number(NIN)</b>
-                                            <div>{{ $applicant->applicantBioData?->gender }}</div>
+                                            <b>Bank Verification Number(BVN)</b>
+                                            <div>{{ $applicant->applicantBioData?->bvn }}</div>
                                         </td>
                                         <td>
-                                            <b>Date of Birth</b>
-                                            <div>{{ $applicant->applicantBioData?->date_of_birth }}</div>
+                                            <b>National Identity Number(NIN)</b>
+                                            <div>{{ $applicant->applicantBioData?->gender }}</div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <b>Contact Address</b>
-                                            <div>{{ $applicant->applicantBioData?->contact_address }}</div>
+                                            <b>Date of Birth</b>
+                                            <div>{{ $applicant->applicantBioData?->date_of_birth }}</div>
                                         </td>
                                         <td>
                                             <b>Place of Birth</b>
                                             <div>{{ $applicant->applicantBioData?->place_of_birth }}</div>
+                                        </td>
+                                        <td>
+                                            <b>Contact Address</b>
+                                            <div>{{ $applicant->applicantBioData?->contact_address }}</div>
                                         </td>
                                         <td>
                                             <b>Local Government Area</b>
@@ -269,7 +273,7 @@
             </table>
         </div>
         <div class="row mt-2">
-            <h2>Qualifications Obtained</h2>
+            <h2>Institutions Attended</h2>
         </div>
         <div class="row table-responsive">
             <table class="table table-bordered">

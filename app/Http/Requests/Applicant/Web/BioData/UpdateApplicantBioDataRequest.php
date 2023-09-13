@@ -15,6 +15,7 @@ class UpdateApplicantBioDataRequest extends FormRequest
     {
         return [
             'phone_number' => ['required', 'digits:11'],
+            'bvn' => ['required', 'digits:11', Rule::unique('applicant_bio_data', 'bvn')->ignore($this->user()->id, 'applicant_id')],
             'nin' => ['nullable', 'digits:11', Rule::unique('applicant_bio_data', 'nin')->ignore($this->user()->id, 'applicant_id')],
             'date_of_birth' => ['required', 'date', 'date_format:Y-m-d'],
             'contact_address' => ['required', 'between:3,200'],
@@ -32,6 +33,9 @@ class UpdateApplicantBioDataRequest extends FormRequest
         return [
             'phone_number.required' => 'Phone Number is required',
             'phone_number.digits' => 'Phone Number must be 11 digits',
+            'bvn.required' => 'BVN is required',
+            'bvn.digits' => 'BVN must be 11 digits',
+            'bvn.unique' => 'BVN has already been used',
             'nin.digits' => 'NIN must be 11 digits',
             'nin.unique' => 'NIN has already been used',
             'date_of_birth.required' => 'Date of Birth is required',
