@@ -55,7 +55,7 @@ Route::group([], function () {
     });
     Route::group(['middleware' => ['auth:applicant']], function () {
         Route::group(['middleware' => ['verify.applicant.email']], function() {
-            // Route::group(['middleware' => ['verify.payment.status']], function () {
+            Route::group(['middleware' => ['verify.payment.status']], function () {
                 Route::resource('/bio-data', ApplicantBioDataController::class, [
                     'names' => [
                         'index' => 'applicant.applicant-bio-data.index',
@@ -112,7 +112,7 @@ Route::group([], function () {
                     ApplicantPDFController::class,
                     'generateSubmitApplicationPDF'
                 ])->name('applicant.generate-submit-application-pdf');
-            // });
+            });
 
             Route::resource('payment-data', ApplicantPaymentDataController::class, [
                 'names' => [
